@@ -45,10 +45,8 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    try { await Booking.bulkCreate(bookings, { validate: true }) }
-    catch (e) {
-      console.error('*****************', e.error)
-    }
+    await Booking.bulkCreate(bookings, { validate: true })
+
   },
 
   async down(queryInterface, Sequelize) {
