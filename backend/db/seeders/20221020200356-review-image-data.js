@@ -34,6 +34,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
+    await ReviewImage.bulkCreate(reviewImage, { validate: true })
   },
 
   async down(queryInterface, Sequelize) {
@@ -43,5 +44,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    await queryInterface.bulkDelete('ReviewImages', null, {})
   }
 };
