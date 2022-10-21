@@ -33,8 +33,9 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         date(value) {
+          let value1 = new Date(value)
           const today = new Date().toString()
-          if (value < today) throw new Error("Date must be today or after.")
+          if (value1 < today) throw new Error("Date must be today or after.")
         }
       }
     },
