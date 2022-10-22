@@ -9,6 +9,14 @@ const router = express.Router();
 // backend/routes/api/users.js
 // ...
 const validateSignup = [
+    check('firstName')
+        .exists({ checkFasly: true })
+        .isLength({ min: 4 })
+        .withMessage('Please provide a first name.'),
+    check('lastName')
+        .exists({ checkFalsy: true })
+        .isLength({ min: 1 })
+        .withMessage('Please provide a last name.'),
     check('email')
         .exists({ checkFalsy: true })
         .isEmail()
@@ -32,8 +40,8 @@ router.post(
     '/',
     validateSignup,
     async (req, res) => {
-        const { email, password, username } = req.body;
-        const user = await User.signup({ email, username, password });
+        const { firstName, lastName, email, password, username } = req.body;
+        const user = await User.signup({ firstName, lastName, email, username, password });
 
         await setTokenCookie(res, user);
 
