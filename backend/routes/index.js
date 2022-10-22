@@ -1,7 +1,7 @@
 // backend/routes/index.js
 const express = require('express');
 const router = express.Router();
-
+const { User, Spot, Booking, Review, ReviewImage, SpotImage } = require('../db/models')
 
 // backend/routes/index.js
 // ...
