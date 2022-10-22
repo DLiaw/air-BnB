@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const { User, Spot, Booking, Review, ReviewImage, SpotImage } = require('../db/models')
-
+const apiRouter = require('./api')
 router.use('/api', apiRouter);
 // backend/routes/index.js
 // ...
