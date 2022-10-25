@@ -1,8 +1,8 @@
-# `<name of application here>`
+# `<mybnb-22>`
 
 ## Database Schema Design
 
-`<insert database schema design here>`
+<!-- `<insert database schema design here>` -->
 
 ![Schema Table](./images/my%20tables.png)
 
