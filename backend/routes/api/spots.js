@@ -162,7 +162,7 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
     const { url, preview } = req.body
     const spotId = req.params.spotId
     const spot = await Spot.findByPk(spotId)
-    if (!spot) {
+    if (req.user.id !== spot.ownerId) {
         res.json({
             message: "Spot couldn't be found",
             statusCode: 404
@@ -179,6 +179,10 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
 })
 
 
+router.post('/:spotId', requireAuth, async (req, res) => {
+    const spotId = req.user.id
+    const { address, city, state, country, lat, lng, name, description, price } = req.body
+})
 
 
 
