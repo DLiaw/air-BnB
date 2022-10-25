@@ -162,10 +162,16 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
     const { url, preview } = req.body
     const spotId = req.params.spotId
     const spot = await Spot.findByPk(spotId)
-    if (req.user.id !== spot.ownerId) {
+    if (!spot) {
         res.json({
             message: "Spot couldn't be found",
             statusCode: 404
+        })
+    }
+    if (req.user.id !== spot.ownerId) {
+        res.json({
+            message: "Forbidden",
+            statusCode: 403
         })
     }
     const image = await SpotImage.build({
@@ -179,11 +185,68 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
 })
 
 
-router.post('/:spotId', requireAuth, async (req, res) => {
-    const spotId = req.user.id
+router.put('/:spotId', requireAuth, async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body
+    const spotId = req.params.spotId
+    const spot = await Spot.findByPk(spotId)
+    if (!spot) {
+        res.json({
+            message: "Spot couldn't be found",
+            statusCode: 404
+        })
+    }
+    if (req.user.id !== spot.ownerId) {
+        res.json({
+            message: "Forbidden",
+            statusCode: 403
+        })
+    }
+    if (!address || !city || !state || !country || !name || !description || !price || isNaN(lat) || isNaN(lng)) {
+        res.json({
+            message: "Validation Error",
+            statusCode: 400,
+            errors: {
+                address: "Street address is required",
+                city: "City is required",
+                state: "State is required",
+                country: "Country is required",
+                lat: "Latitude is not valid",
+                lng: "Longitude is not valid",
+                name: "Name must be less than 50 characters",
+                description: "Description is required",
+                price: "Price per day is required"
+            }
+        })
+    }
+    const update = await spot.update({
+        address, city, state, country, lat, lng, name, description, price,
+        ownerId: Spot.ownerId
+    })
+    res.json(update)
 })
 
+
+router.delete('/:spotId', requireAuth, async (req, res) => {
+    const spotId = req.params.spotId
+    const spot = await Spot.findByPk(spotId)
+    if (!spot) {
+        res.json({
+            message: "Spot couldn't be found",
+            statusCode: 404
+        })
+    }
+    if (req.user.id !== spot.ownerId) {
+        res.json({
+            message: "Forbidden",
+            statusCode: 403
+        })
+    }
+    await spot.destroy()
+    res.json({
+        message: "Successfully deleted",
+        statusCode: 200
+    })
+})
 
 
 
