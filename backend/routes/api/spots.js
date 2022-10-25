@@ -7,7 +7,7 @@ const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
 const { Sequelize } = require("sequelize");
 const { raw } = require('express');
-
+const { Op } = require('sequelize')
 
 
 router.get('/', async (req, res, next) => {
@@ -249,9 +249,70 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
 })
 
 
+router.get('/:spotId/reviews', async (req, res) => {
+    const { spotId } = req.params
+    const id = await Spot.findByPk(spotId)
+    if (!id) {
+        res.json({
+            message: "Spot couldn't be found",
+            statusCode: 404
+        })
+    }
+    const Reviews = await Review.findAll({
+        where: { spotId: spotId },
+        include: [
+            { model: User, attributes: ['id', 'firstName', 'lastName'] },
+            // { model: Spot, attributes: { exclude: ['createdAt', 'updatedAt'] } },
+            { model: ReviewImage, attributes: ['id', 'url'] }
+        ]
+    })
+
+    res.json({ Reviews })
+})
 
 
+router.post('/:spotId/reviews', requireAuth, async (req, res) => {
+    const { spotId } = req.params
+    const { review, stars } = req.body
+    const id = await Spot.findByPk(spotId)
+    const reviewList = await Review.findAll({
+        where: {
+            [Op.and]: { spotId, userId: req.user.id }
+        }
+    })
 
+    if (!id) {
+        res.json({
+            message: "Spot couldn't be found",
+            statusCode: 404
+        })
+    }
+    if (reviewList.length) {
+        res.json({
+            message: "User already has a review for this spot",
+            statusCode: 403
+        })
+    }
+    if (review == '' || parseInt(stars) < 1 || parseInt(stars) > 5) {
+        res.json({
+            message: "Validation error",
+            statusCode: 400,
+            errors: {
+                review: "Review text is required",
+                stars: "Stars must be an integer from 1 to 5",
+            }
+        })
+    }
+
+    const newReview = await Review.build({
+        review, stars,
+        spotId, userId: req.user.id
+    })
+    await newReview.validate()
+    await newReview.save()
+    res.json(newReview)
+
+})
 
 
 
