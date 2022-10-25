@@ -32,6 +32,12 @@ const reviews = [
     review: 'Loved it!! Had a great time!',
     stars: 5
   },
+  {
+    spotId: 1,
+    userId: 3,
+    review: 'was alirght',
+    stars: 2
+  }
 ]
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -45,6 +51,7 @@ module.exports = {
      * }], {});
     */
     await Review.bulkCreate(reviews, { validate: true })
+
   },
 
   async down(queryInterface, Sequelize) {

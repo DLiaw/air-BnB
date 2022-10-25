@@ -12,7 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Spot.belongsTo(models.User, {
-        foreignKey: 'ownerId'
+        foreignKey: 'ownerId',
+        as: 'Owner'
       })
       Spot.hasMany(models.Review, {
         foreignKey: 'spotId'
@@ -46,13 +47,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    latitude: {
+    lat: {
       type: DataTypes.FLOAT,
-      allowNull: false
     },
-    longitude: {
+    lng: {
       type: DataTypes.FLOAT,
-      allowNull: false
     },
     name: {
       type: DataTypes.STRING,

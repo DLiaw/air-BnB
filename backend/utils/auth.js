@@ -4,16 +4,16 @@ const { jwtConfig } = require('../config');
 const { User } = require('../db/models');
 
 const { secret, expiresIn } = jwtConfig;
-const requireAuth = function (req, _res, next) {
-    if (req.user) return next();
-    const err = new Error('Unauthorized');
-    err.title = 'Unauthorized';
-    err.errors = ['Unauthorized'];
-    err.status = 401;
-    return next(err);
-}
-// backend/utils/auth.js
-// ...
+// const requireAuth = function (req, _res, next) {
+//     if (req.user) return next();
+//     const err = new Error('Unauthorized');
+//     err.title = 'Unauthorized';
+//     err.errors = ['Unauthorized'];
+//     err.status = 401;
+//     return next(err);
+// }
+// // backend/utils/auth.js
+// // ...
 
 // Sends a JWT Cookie
 const setTokenCookie = (res, user) => {
@@ -65,7 +65,16 @@ const restoreUser = (req, res, next) => {
 };
 
 
-
+const requireAuth = function (req, _res, next) {
+    if (req.user) return next();
+    const err = new Error('Unauthorized');
+    err.title = 'Unauthorized';
+    err.errors = ['Unauthorized'];
+    err.status = 401;
+    return next(err);
+}
+// backend/utils/auth.js
+// ...
 
 
 
