@@ -48,8 +48,11 @@ router.post(
 
         if (userName) {
             res.json({
+                message: "User already exists",
                 statusCode: 403,
-                message: 'User name exists.',
+                errors: {
+                    email: "User with that email already exists"
+                }
             })
         }
 
@@ -68,8 +71,7 @@ router.post(
         const token = await setTokenCookie(res, user);
 
         return res.json({
-            user,
-            token
+            firstName, lastName, email, username, password, token
         });
     }
 );
