@@ -131,30 +131,59 @@ router.get('/current', requireAuth, async (req, res, next) => {
 
 router.get('/:spotId', async (req, res, next) => {
     const { spotId } = req.params
-    const id = await Spot.findByPk(spotId)
-    if (!id) {
+    const idd = await Spot.findByPk(spotId)
+    if (!idd) {
         res.json({
             message: "Spot couldn't be found",
             statusCode: 404
         })
     }
 
-    const spot = await Spot.findOne({
-        where: { id: spotId },
-        include: [
+    // const spot = await Spot.findOne({
+    //     where: { id: spotId },
+    //     include: [
+    //         { model: SpotImage, attributes: ['id', 'url', 'preview'] },
+    //         { model: User, as: 'Owner', attributes: ['id', 'firstName', 'lastName'] },
+    //         { model: Review, attributes: [] }
+    //     ],
+    //     attributes: {
+    //         include: [
+    //             [Sequelize.fn('COUNT', Sequelize.col('Reviews.id')), 'numReviews'],
+    //             [Sequelize.fn('avg', Sequelize.col('Reviews.stars')), 'avgStarRating'],
+
+    //         ]
+    //     }
+    // })
+    const spot = await Spot.findAll({
+        where: { id: spotId }, include: [
             { model: SpotImage, attributes: ['id', 'url', 'preview'] },
             { model: User, as: 'Owner', attributes: ['id', 'firstName', 'lastName'] },
             { model: Review, attributes: [] }
-        ],
-        attributes: {
-            include: [
-                [Sequelize.fn('COUNT', Sequelize.col('Reviews.id')), 'numReviews'],
-                [Sequelize.fn('avg', Sequelize.col('Reviews.stars')), 'avgStarRating'],
-
-            ]
-        }
+        ]
     })
-    res.json(spot)
+    let Spots = []
+    spot.forEach(sp => {
+        Spots.push(sp.toJSON())
+    })
+    const numRe = await Review.findAll({
+        where: { spotId: spotId }
+    })
+    Spots.numReviews = numRe.length
+    let avgUrl = {}
+    for (let spot of Spots) {
+
+        avgUrl = await Review.findOne({
+            where: { spotId: spotId },
+            attributes: [
+                [Sequelize.fn('avg', Sequelize.col('stars')), 'rating']
+            ],
+            raw: true
+        })
+        spot.avgRating = avgUrl.rating
+        delete spot.Reviews
+    }
+
+    res.json(Spots)
 
 })
 
