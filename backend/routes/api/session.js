@@ -58,6 +58,7 @@ router.post(
         let { id, firstName, lastName, email, username } = user
         return res.json({
             id, firstName, lastName, email, username, token
+
         });
     }
 );

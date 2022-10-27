@@ -95,13 +95,18 @@ router.get('/current', requireAuth, async (req, res, next) => {
         attributes: {
             include: [
                 [Sequelize.fn('avg', Sequelize.col('Reviews.stars')), 'avgStarRating'],
-                [Sequelize.col("SpotImages.url"), "previewImage"]
+                // [Sequelize.col("SpotImages.url"), "previewImage"]
             ]
         },
-        group: ['Spot.id']
+        // group: ['Spot.id']
     })
 
-    res.json({ 'Spots': spot })
+    let Spots = spot.toJSON()
+    Spots.forEach(sp => {
+        sp.previewImage = sp.SpotImage.url
+    })
+
+    res.json({ Spots })
 })
 
 
