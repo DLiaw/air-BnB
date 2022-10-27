@@ -67,8 +67,8 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
     }
     if (date < startDate) {
         res.json({
-            "message": "Past bookings can't be modified",
-            "statusCode": 403
+            message: "Past bookings can't be modified",
+            statusCode: 403
         })
     }
     const bookingIdJson = bookingId.toJSON()
@@ -77,41 +77,41 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
 
     if (bookingIdJson.startDate >= startDate && bookingIdJson.endDate < endDate) {
         res.json({
-            "message": "Sorry, this spot is already booked for the specified dates",
-            "statusCode": 403,
-            "errors": {
-                "startDate": "Start date conflicts with an existing booking",
-                "endDate": "End date conflicts with an existing booking"
+            message: "Sorry, this spot is already booked for the specified dates",
+            statusCode: 403,
+            errors: {
+                startDate: "Start date conflicts with an existing booking",
+                endDate: "End date conflicts with an existing booking"
             }
         })
     }
     if (bookingIdJson.startDate <= startDate && bookingIdJson.endDate < endDate && startDate <= bookingIdJson.endDate) {
         res.json({
-            "message": "Sorry, this spot is already booked for the specified dates",
-            "statusCode": 403,
-            "errors": {
-                "startDate": "Start date conflicts with an existing booking",
-                "endDate": "End date conflicts with an existing booking"
+            message: "Sorry, this spot is already booked for the specified dates",
+            statusCode: 403,
+            errors: {
+                startDate: "Start date conflicts with an existing booking",
+                endDate: "End date conflicts with an existing booking"
             }
         })
     }
     if (bookingIdJson.startDate >= startDate && bookingIdJson.endDate > endDate && startDate >= bookingIdJson.startDate) {
         res.json({
-            "message": "Sorry, this spot is already booked for the specified dates",
-            "statusCode": 403,
-            "errors": {
-                "startDate": "Start date conflicts with an existing booking",
-                "endDate": "End date conflicts with an existing booking"
+            message: "Sorry, this spot is already booked for the specified dates",
+            statusCode: 403,
+            errors: {
+                startDate: "Start date conflicts with an existing booking",
+                endDate: "End date conflicts with an existing booking"
             }
         })
     }
     if (bookingIdJson.startDate <= startDate && bookingIdJson.endDate > endDate) {
         res.json({
-            "message": "Sorry, this spot is already booked for the specified dates",
-            "statusCode": 403,
-            "errors": {
-                "startDate": "Start date conflicts with an existing booking",
-                "endDate": "End date conflicts with an existing booking"
+            message: "Sorry, this spot is already booked for the specified dates",
+            statusCode: 403,
+            errors: {
+                startDate: "Start date conflicts with an existing booking",
+                endDate: "End date conflicts with an existing booking"
             }
         })
     }

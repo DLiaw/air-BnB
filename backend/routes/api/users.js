@@ -67,13 +67,13 @@ router.post(
             })
         }
         const user = await User.signup({ firstName, lastName, email, username, password });
-
         const token = await setTokenCookie(res, user);
+        let user1 = user.toJSON()
 
-        return res.json({
-            // firstName, lastName, email, username, password,
-            user, token
-        });
+        user1.token = token
+        delete user1.createdAt
+        delete user1.updatedAt
+        res.json(user1);
     }
 );
 
