@@ -117,7 +117,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
     }
     if (bookingIdJson.startDate == startDate || bookingIdJson.endDate == startDate || bookingIdJson.startDate == endDate || bookingIdJson.endDate == endDate) {
         res.json({
-            message: "4Sorry, this spot is already booked for the specified dates",
+            message: "Sorry, this spot is already booked for the specified dates",
             statusCode: 403,
             errors: {
                 startDate: "Start date conflicts with an existing booking",
