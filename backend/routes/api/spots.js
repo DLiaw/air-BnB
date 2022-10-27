@@ -85,28 +85,47 @@ router.get('/', async (req, res, next) => {
 
 router.get('/current', requireAuth, async (req, res, next) => {
     const currentId = req.user.id
-    const spot = await Spot.findAll({
+    // const spot = await Spot.findAll({
+    //     where: { ownerId: currentId },
+    //     include: [
+    //         { model: Review, attributes: [],},
+    //         { model: SpotImage, attributes: [], where: { preview: true }}],
+    //     attributes: {include: [[Sequelize.fn('avg', Sequelize.col('Reviews.stars')), 'avgStarRating'],
+    //             [Sequelize.col("SpotImages.url"), "previewImage"]]},
+    //     group: ['Spot.id']
+    // })
+    // res.json({ 'Spots': spot })
+    const spots = await Spot.findAll({
+        where: { ownerId: currentId }, include: [{ model: Review }, { model: SpotImage }]
+    })
+    let Spots = []
+    spots.forEach(sp => {
+        Spots.push(sp.toJSON())
+    })
+    let avgUrl = {}
+    for (let spot of Spots) {
 
-        where: { ownerId: currentId },
-        include: [
-            { model: Review, attributes: [], },
-            { model: SpotImage, attributes: [], where: { preview: true } }
-        ],
-        attributes: {
-            include: [
-                [Sequelize.fn('avg', Sequelize.col('Reviews.stars')), 'avgStarRating'],
-                // [Sequelize.col("SpotImages.url"), "previewImage"]
-            ]
-        },
-        // group: ['Spot.id']
+        avgUrl = await Review.findOne({
+            where: { spotId: spot.id },
+            attributes: [
+                [Sequelize.fn('avg', Sequelize.col('stars')), 'rating']
+            ],
+            raw: true
+        })
+        spot.avgRating = avgUrl.rating
+        delete spot.Reviews
+    }
+
+    Spots.forEach(spot => {
+        spot.SpotImages.forEach(link => {
+            if (link.preview) avgUrl.previewImage = link.url
+        })
+        if (!avgUrl.previewImage) avgUrl.previewImage = 'Coming Soon!'
+        spot.previewImage = avgUrl.previewImage
+        delete spot.SpotImages
     })
 
-    let Spots = spot.toJSON()
-    Spots.forEach(sp => {
-        sp.previewImage = sp.SpotImage.url
-    })
-
-    res.json({ Spots })
+    res.json(Spots)
 })
 
 
