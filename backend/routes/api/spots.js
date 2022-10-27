@@ -71,7 +71,9 @@ router.get('/', async (req, res, next) => {
             ],
             raw: true
         })
-        spot.avgRating = avgUrl.rating
+        if (avgUrl.rating) {
+            spot.avgRating = Number(avgUrl.rating).toFixed(1)
+        }
         delete spot.Reviews
     }
 
@@ -112,7 +114,9 @@ router.get('/current', requireAuth, async (req, res, next) => {
             ],
             raw: true
         })
-        spot.avgRating = avgUrl.rating
+        if (avgUrl.rating) {
+            spot.avgRating = Number(avgUrl.rating).toFixed(1)
+        }
         delete spot.Reviews
     }
 
@@ -169,20 +173,22 @@ router.get('/:spotId', async (req, res, next) => {
         where: { spotId: spotId }
     })
     Spots.numReviews = numRe.length
-    let avgUrl = {}
+    // let avgUrl = {}
     for (let spot of Spots) {
 
-        avgUrl = await Review.findOne({
+        let avgUrl = await Review.findOne({
             where: { spotId: spotId },
             attributes: [
                 [Sequelize.fn('avg', Sequelize.col('stars')), 'rating']
             ],
             raw: true
         })
-        spot.avgRating = avgUrl.rating
+
+        if (avgUrl.rating) {
+            spot.avgRating = Number(avgUrl.rating).toFixed(1)
+        }
         delete spot.Reviews
     }
-
     res.json(Spots)
 
 })
