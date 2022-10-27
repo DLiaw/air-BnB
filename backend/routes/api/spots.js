@@ -129,7 +129,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
         delete spot.SpotImages
     })
 
-    res.json(Spots)
+    res.json({ Spots })
 })
 
 
@@ -172,11 +172,14 @@ router.get('/:spotId', async (req, res, next) => {
     const numRe = await Review.findAll({
         where: { spotId: spotId }
     })
-    Spots.numReviews = numRe.length
-    // let avgUrl = {}
+    if (numRe.length) Spots[0].numReviews = Number(numRe.length)
+
+    if (!(numRe.length)) Spots[0].numReviews = 0
+    console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&", Spots)
+    let avgUrl = {}
     for (let spot of Spots) {
 
-        let avgUrl = await Review.findOne({
+        avgUrl = await Review.findOne({
             where: { spotId: spotId },
             attributes: [
                 [Sequelize.fn('avg', Sequelize.col('stars')), 'rating']
@@ -185,11 +188,11 @@ router.get('/:spotId', async (req, res, next) => {
         })
 
         if (avgUrl.rating) {
-            spot.avgRating = Number(avgUrl.rating).toFixed(1)
+            spot.avgStarRating = Number(avgUrl.rating).toFixed(1)
         }
         delete spot.Reviews
     }
-    res.json(Spots)
+    res.json(Spots[0])
 
 })
 
