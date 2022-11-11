@@ -52,7 +52,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
     const date = new Date().toString()
     if (!bookingId) {
         res.json({
-            message: "Spot couldn't be found",
+            message: "Booking couldn't be found",
             statusCode: 404
         })
     }
