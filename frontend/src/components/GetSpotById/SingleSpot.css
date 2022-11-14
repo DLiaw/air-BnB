@@ -1,0 +1,55 @@
+.singleSpotTop4divs {
+
+    border: 20px solid brown;
+}
+
+.singleSpotPhotodiv {
+    display: flex;
+    width: 600px;
+    border: 20px solid blue;
+}
+
+.singleSpotImagediv {
+    display: flex;
+    justify-content: space-around;
+    border: 20px solid red;
+
+}
+
+#smallimg {
+    display: flex;
+    justify-content: space-evenly;
+    height: 190px;
+    width: 280px;
+}
+
+.singleSpotphotodiv {
+    border: 20px solid black;
+}
+
+#largeimg {
+
+    height: 100%;
+    width: 100%;
+
+}
+
+.singleSpotSmalldiv {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border: 20px solid greenyellow;
+
+}
+
+.singleSpotSmalldiv div {
+    gap: .5rem;
+}
+
+#smallpic2 {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    flex-direction: row;
+}
