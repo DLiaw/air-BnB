@@ -1,0 +1,21 @@
+.navmaindiv {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: solid 1px rgb(225, 223, 223);
+    align-items: center;
+    height: 80px;
+    padding: 0 8rem 0 8rem;
+    position: fixed;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 1;
+    background-color: white;
+    ;
+
+}
+
+#navLogo {
+    height: 68px;
+    box-sizing: border-box;
+}

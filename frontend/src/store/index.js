@@ -1,13 +1,14 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import sessionReducer from './session';
-
+import allSpotImagesReducer from './allspots'
 
 
 const rootReducer = combineReducers({
   session: sessionReducer,
+  spot: allSpotImagesReducer
 });
-
+// reducers can be passed as props
 let enhancer;
 
 if (process.env.NODE_ENV === "production") {
