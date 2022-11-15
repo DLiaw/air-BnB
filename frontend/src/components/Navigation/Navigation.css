@@ -19,3 +19,8 @@
     height: 68px;
     box-sizing: border-box;
 }
+
+#navloginsignup {
+    display: flex;
+    flex-direction: row;
+}

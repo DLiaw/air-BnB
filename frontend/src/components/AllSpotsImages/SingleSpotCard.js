@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 
 const SingleSpotCard = ({ spot }) => {
+
     return (
 
         <div className='spotsSeconddiv' >

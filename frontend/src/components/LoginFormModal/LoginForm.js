@@ -14,12 +14,14 @@ function LoginForm({ setShowModal }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([]);
-        return dispatch(sessionActions.login({ credential, password })).catch(
-            async (res) => {
-                const data = await res.json();
-                if (data && data.errors) setErrors(data.errors);
-            }
-        );
+        return dispatch(sessionActions.login({ credential, password }))
+            .then(() => setShowModal(false))
+            .catch(
+                async (res) => {
+                    const data = await res.json();
+                    if (data && data.errors) setErrors(data.errors);
+                }
+            );
     };
 
     return (
@@ -52,7 +54,7 @@ function LoginForm({ setShowModal }) {
                 </label>
                 <div className="longinsignupdiv">
                     <button id="loginsignupbutton" type="submit">Login</button>
-                    <button id="loginsignupbutton" type="submit">Singup</button>
+                    <button id="loginsignupbutton" type="submit">Signup</button>
                 </div>
             </form>
         </div>

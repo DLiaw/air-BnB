@@ -7,16 +7,18 @@ import { useParams } from 'react-router-dom';
 
 const SpotDetail = () => {
     const oneSpot = useSelector(state => state.spot.singleSpot)
+    const [isloaded, setLoaded] = useState(false)
     const { spotId } = useParams()
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(getSpotByIdThunk(spotId))
-    }, [dispatch])
+            .then(() => { setLoaded(true) })
+    }, [dispatch], spotId)
 
     if (!oneSpot) return null;
 
-    return (
+    return isloaded && (
         <div style={{ borderColor: '3px solid red', paddingTop: '200px' }}>
             <SingleSpot key={oneSpot.id} oneSpot={oneSpot} />
         </div>

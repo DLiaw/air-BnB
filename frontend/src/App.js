@@ -7,8 +7,13 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import AllSpotImage from "./components/AllSpotsImages";
 import SpotDetail from "./components/GetSpotById";
+import CreateASpot from "./components/CreateASpot";
+import AddImage from "./components/CreateASpot/AddImage";
+import EditASpot from "./components/EditASpot";
+
 
 function App() {
+
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
@@ -23,8 +28,14 @@ function App() {
           <Route exact path='/'>
             <AllSpotImage />
           </Route>
-          <Route path='/spots/:spotId'>
+          <Route exact path='/spots/new'>
+            <CreateASpot />
+          </Route>
+          <Route exact path='/spots/:spotId'>
             <SpotDetail />
+          </Route>
+          <Route exact path='/spots/:spotId/edit'>
+            <EditASpot />
           </Route>
         </Switch>
       )
