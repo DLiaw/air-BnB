@@ -34,7 +34,7 @@ function CreateASpot({ newSpot, image }) {
         if (description.length > 200) validationErrors.push('Address must be under 200 characters.')
         if (price !== '' && price < 1) validationErrors.push('Price must be at least $1.')
         if (url.length === ' ') validationErrors.push('Url is required.')
-        if (url.split('.') === undefined) validationErrors.push('Must be a valid url address.')
+        // if (url.split(':') === undefined) validationErrors.push('Must be a valid url address.')
         setErrors(validationErrors)
     }, [name, address, city, state, country, description, price, url])
 
