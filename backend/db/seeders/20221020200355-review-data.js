@@ -31,11 +31,61 @@ const reviews = [
     userId: 5,
     review: 'Loved it!! Had a great time!',
     stars: 5
-  },
+  }
+  ,
   {
-    spotId: 1,
+    spotId: 6,
+    userId: 3,
+    review: 'The Best',
+    stars: 2
+  }
+  ,
+  {
+    spotId: 7,
+    userId: 3,
+    review: 'Love it!!',
+    stars: 2
+  }
+  ,
+  {
+    spotId: 8,
+    userId: 3,
+    review: 'Awesome',
+    stars: 2
+  }
+  ,
+  {
+    spotId: 9,
+    userId: 3,
+    review: 'Lovely',
+    stars: 2
+  }
+  ,
+  {
+    spotId: 10,
+    userId: 3,
+    review: 'Amazing!!',
+    stars: 2
+  }
+  ,
+  {
+    spotId: 11,
+    userId: 3,
+    review: 'Love it !!!',
+    stars: 2
+  }
+  ,
+  {
+    spotId: 12,
     userId: 3,
     review: 'was alirght',
+    stars: 2
+  }
+  ,
+  {
+    spotId: 13,
+    userId: 3,
+    review: 'Could be better',
     stars: 2
   }
 ]

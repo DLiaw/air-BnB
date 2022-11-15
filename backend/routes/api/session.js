@@ -14,11 +14,13 @@ const validateLogin = [
     check('credential')
         .exists({ checkFalsy: true })
         .notEmpty()
+        .isLength({ min: 4 })
         .withMessage('Please provide a valid email or username.'),
     check('password')
         .exists({ checkFalsy: true })
-        .withMessage('Please provide a password.'),
+        .withMessage('Please provide a valid password.'),
     handleValidationErrors
+
 ];
 // Log in
 router.post(
@@ -28,38 +30,42 @@ router.post(
         const { credential, password } = req.body;
 
         const user = await User.login({ credential, password });
-
-        // if (!user) {
-        //     const err = new Error('Login failed');
-        //     err.status = 401;
-        //     err.title = 'Login failed';
-        //     err.errors = ['The provided credentials were invalid.'];
-        //     return next(err);
-        // }
         if (!user) {
-            res.json({
-                message: "Invalid credentials",
-                statusCode: 401
-            })
+
+            const err = new Error('Login failed');
+            err.status = 401;
+            err.title = 'Login failed';
+            err.errors = ["Invalid credentials"];
+            // return res.json({
+            //     // message: 'Login failed.',
+            //     // statusCode: err.status,
+            //     // errors: err.errors
+            // });
+            return next(err)
         }
+
         if (credential == '' || password == '') {
-            res.json({
+            res.status = 400
+            return res.json({
                 message: "Validation error",
                 statusCode: 400,
-                errors: {
-                    credential: "Email or username is required",
-                    password: "Password is required"
-                }
+                errors: [
+                    "Email or username is required",
+                    "Password is required"
+                ]
             })
         }
-        const token = await setTokenCookie(res, user);
+        await setTokenCookie(res, user);
 
+        // user['token'] = tokens
+        // delete user.createdAt
+        // delete user.updatedAt
+        // let { id, firstName, lastName, email, username } = user
 
-        let { id, firstName, lastName, email, username } = user
-        return res.json({
-            id, firstName, lastName, email, username, token
-
-        });
+        return res.json(
+            // id, firstName, lastName, email, username, token
+            user
+        );
     }
 );
 
@@ -86,11 +92,11 @@ router.get(
     (req, res) => {
         const { user } = req;
         if (user) {
-            const { id, firstName, lastName, email, username } = user
+            // const { id, firstName, lastName, email, username } = user
             return res.json({
-                id, firstName, lastName, email, username
+                user
             });
-        } else return res.json({});
+        } else return res.json({ user: null });
     }
 );
 

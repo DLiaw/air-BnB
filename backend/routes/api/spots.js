@@ -32,8 +32,8 @@ const { Op } = require('sequelize')
 router.get('/', async (req, res, next) => {
     let { page, size } = req.query;
     if (!page || page <= 1 || isNaN(page)) page = 1;
-    if (!size || size <= 1 || isNaN(size)) size = 25;
-    if (size > 25) size = 25
+    if (!size || size <= 1 || isNaN(size)) size = 50;
+    if (size > 50) size = 50
     let pagination = {}
 
     pagination.limit = size;
@@ -52,10 +52,11 @@ router.get('/', async (req, res, next) => {
         Spots.push(spot.toJSON())
     })
 
-    let avgUrl = {}
     Spots.forEach(spot => {
+        let avgUrl = {} // avgurl.previewimage = link.1
         spot.SpotImages.forEach(link => {
             if (link.preview) avgUrl.previewImage = link.url
+
         })
         if (!avgUrl.previewImage) avgUrl.previewImage = 'Coming Soon!'
         spot.previewImage = avgUrl.previewImage
@@ -199,7 +200,8 @@ router.get('/:spotId', async (req, res, next) => {
 router.post('/', requireAuth, async (req, res, next) => {
     const ownerId = req.user.id
     const { address, city, state, country, lat, lng, name, description, price } = req.body
-    if (!address || !city || !state || !country || !lat || !lng || !name || !description || !price) {
+    if (!address || !city || !state || !country || !name || !description || !price) {
+        res.status = 400
         res.json({
             message: "Validation Error",
             statusCode: 400,
