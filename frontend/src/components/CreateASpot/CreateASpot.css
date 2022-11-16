@@ -1,5 +1,135 @@
 .createspot {
     display: flex;
-    position: relative;
+    width: 400px;
+    height: 630px;
+    justify-content: center;
     top: 150px;
+    background-color: rgba(0, 0, 0, .4);
+    border-radius: 20px;
+    flex-direction: column;
+    padding-left: 58px;
+    margin-bottom: 80px;
+
+}
+
+.createspot:hover {
+    box-shadow: 1px;
+    color: #999;
+}
+
+.createspotMaindiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    top: 80px;
+    border: none;
+    background-image: url(https://a0.muscache.com/im/pictures/88d46041-60a0-4064-ae28-03423174766c.jpg?im_w=960);
+    background-size: cover;
+    animation: change 50s infinite ease-in-out;
+
+
+}
+
+#spotform {
+    border-radius: 15px;
+    padding: 10px;
+    margin: 10px 0;
+    width: 80%;
+    border: 1px solid #999;
+    outline: none;
+}
+
+#spotdescription {
+    border-radius: 20px;
+    padding: 10px;
+    margin: 10px 0;
+    height: 60px;
+    width: 80%;
+    border: 1px solid #999;
+    outline: none;
+    text-align: left;
+    align-items: flex-start;
+    vertical-align: top;
+}
+
+#spotdescription::placeholder {
+
+    text-align: left;
+    margin: 1px;
+    padding: 1px;
+    width: 500px;
+    height: 300px;
+    text-align: bottom;
+
+}
+
+#spotbutton {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(225, 23, 104, 0.98);
+    color: white;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+    width: 302px;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 15px;
+    margin: 10px 0;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 20px;
+    border: 1px solid #999;
+    margin: 26px;
+}
+
+@keyframes change {
+
+    0% {
+        background: url(https://a0.muscache.com/im/pictures/monet/Luxury-570973165437649140/original/5b3872b7-fc85-4e67-bd3b-dc69e298dae3?im_w=1200);
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        -webkit-backface-visibility: hidden;
+    }
+
+    25% {
+        background: url(https://a0.muscache.com/im/pictures/010f9ba8-c46c-4f1d-92b1-2304df1e8cfa.jpg?im_w=1200);
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        -webkit-backface-visibility: hidden;
+    }
+
+    50% {
+        background: url(https://a0.muscache.com/im/pictures/prohost-api/Hosting-595032592216838940/original/abb87538-212e-4615-8218-b53c842c4a90.jpeg?im_w=1200);
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        -webkit-backface-visibility: hidden;
+    }
+
+    75% {
+        background: url(https://a0.muscache.com/im/pictures/e1e25e03-02d8-44e6-b88f-be04f6afaafe.jpg?im_w=1200);
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        -webkit-backface-visibility: hidden;
+    }
+
+    100% {
+        background: url(https://a0.muscache.com/im/pictures/monet/Luxury-570973165437649140/original/5b3872b7-fc85-4e67-bd3b-dc69e298dae3?im_w=1200);
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        -webkit-backface-visibility: hidden;
+    }
+
 }

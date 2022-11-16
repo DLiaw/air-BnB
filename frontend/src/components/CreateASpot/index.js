@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import './CreateASpot.css';
 import { addAImageThunk } from "../../store/CreateASpotStore";
 
-function CreateASpot({ newSpot, image }) {
+function CreateASpot({ newSpot }) {
     const history = useHistory()
     const [name, setName] = useState('');
     const [address, setAddress] = useState('');
@@ -17,6 +17,8 @@ function CreateASpot({ newSpot, image }) {
     const [errors, setErrors] = useState([]);
     const dispatch = useDispatch()
     const [url, setUrl] = useState('')
+
+
 
     useEffect(() => {
         const validationErrors = []
@@ -47,100 +49,100 @@ function CreateASpot({ newSpot, image }) {
             state,
             country,
             description,
-            price
-        }
-        const image = {
+            price,
             url
         }
-        // const id = await
-        const id = await dispatch(createASpotThunk(newSpot))
+        const createOne = await dispatch(createASpotThunk(newSpot))
 
-        image.spotId = id.id
-        await dispatch(addAImageThunk(image))
+        // await dispatch(addAImageThunk(image))
         //await
+        if (createOne) history.push(`/spots/${createOne.id}`)
 
-        await history.push('/')
+
+
     }
     return (
-        <div className="createspot">
-            <form onSubmit={handleSubmit}>
-                <ul>
-                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                </ul>
-                <label>
-                    <input id="spotname" placeholder="Name"
-                        type="text"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        required
-                    />
-                </label>
+        <div className="createspotMaindiv" >
+            <div className="createspot">
+                <form onSubmit={handleSubmit}>
+                    <ul>
+                        {errors.length > 0 && errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                    </ul>
+                    <label>
+                        <input id="spotform" placeholder="Name"
+                            type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                        />
+                    </label>
 
-                <label>
-                    <input id="spotaddress" placeholder="Address"
-                        type="text"
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                        required
-                    />
-                </label>
+                    <label>
+                        <input id="spotform" placeholder="Address"
+                            type="text"
+                            value={address}
+                            onChange={(e) => setAddress(e.target.value)}
+                            required
+                        />
+                    </label>
 
-                <label>
-                    <input id="spotcity" placeholder="City"
-                        type="text"
-                        value={city}
-                        onChange={(e) => setCity(e.target.value)}
-                        required
-                    />
-                </label>
+                    <label>
+                        <input id="spotform" placeholder="City"
+                            type="text"
+                            value={city}
+                            onChange={(e) => setCity(e.target.value)}
+                            required
+                        />
+                    </label>
 
-                <label>
-                    <input id="spotstate" placeholder="State"
-                        type="text"
-                        value={state}
-                        onChange={(e) => setState(e.target.value)}
-                        required
-                    />
-                </label>
+                    <label>
+                        <input id="spotform" placeholder="State"
+                            type="text"
+                            value={state}
+                            onChange={(e) => setState(e.target.value)}
+                            required
+                        />
+                    </label>
 
-                <label>
-                    <input id="spotcountry" placeholder="Country"
-                        type="text"
-                        value={country}
-                        onChange={(e) => setCountry(e.target.value)}
-                        required
-                    />
-                </label>
+                    <label>
+                        <input id="spotform" placeholder="Country"
+                            type="text"
+                            value={country}
+                            onChange={(e) => setCountry(e.target.value)}
+                            required
+                        />
+                    </label>
 
-                <label>
-                    <input id="spotdescription" placeholder="Description"
-                        type="text"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        required
-                    />
-                </label>
+                    <label>
+                        <input id="spotdescription" placeholder="Description"
+                            type="text"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            required
+                        />
+                    </label>
 
-                <label>
-                    <input id="spotprice" placeholder="Price"
-                        type="integer"
-                        value={price}
-                        onChange={(e) => setPrice(e.target.value)}
-                        required
-                    />
-                </label>
-                <label>
-                    <input id="spoturl" placeholder="Url"
-                        type="text"
-                        value={url}
-                        onChange={(e) => setUrl(e.target.value)}
-                        required
-                    />
-                </label>
-                <div>
-                    <button id="createSpotButton" type="submit">Become a host</button>
-                </div>
-            </form>
+                    <label>
+                        <input id="spotform" placeholder="Price"
+                            type="integer"
+                            value={price}
+                            onChange={(e) => setPrice(e.target.value)}
+                            required
+                        />
+                    </label>
+                    <label>
+                        <input id="spotform" placeholder="Url"
+                            type="text"
+                            value={url}
+                            onChange={(e) => setUrl(e.target.value)}
+                            required
+                        />
+                    </label>
+                    <div>
+                        <button id="spotbutton" type="submit">Become a host</button>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 

@@ -31,18 +31,27 @@ export const addAImageThunk = (image) => async dispatch => {
 }
 
 export const createASpotThunk = (newSpot) => async dispatch => {
-    const { address, city, state, country, name, price, description } = newSpot
-
+    const { url } = newSpot
     const response = await csrfFetch('/api/spots', {
         method: 'POST',
-        body: JSON.stringify({
-            address, city, state, country, name, price, description
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newSpot)
     })
     if (response.ok) {
+
         const oneSpot = await response.json()
-        dispatch(createASpotAction(oneSpot))
-        return oneSpot
+
+        const res = await csrfFetch(`/api/spots/${oneSpot.id}/images`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ url, preview: true })
+        })
+        if (res.ok) {
+            const image = await res.json()
+            oneSpot.SpotImages = [image]
+            dispatch(createASpotAction(oneSpot))
+            return oneSpot
+        }
     }
 
 }

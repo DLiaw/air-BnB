@@ -8,27 +8,12 @@ import { Modal } from '../../context/Modal';
 import LoginForm from '../LoginFormModal/LoginForm';
 import SignupForm from '../SignupFormModal/SignupForm';
 import './Navigation.css';
-import SignupFormModal from '../SignupFormModal';
-import LoginFormModal from '../LoginFormModal';
-import createASpot from '../CreateASpot';
+
+
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
     const [showModal, setShowModal] = useState(false)
     const [login, setLogin] = useState(true)
-
-    // let sessionLinks;
-    // if (sessionUser) {
-    //     sessionLinks = (
-    //         <ProfileButton user={sessionUser} />
-    //     );
-    // } else {
-    //     sessionLinks = (
-    //         <>
-    //             <LoginFormModal />
-    //             <SignupFormModal />
-    //         </>
-    //     );
-    // }
 
     return (
         <div className='navmaindiv'>
@@ -37,15 +22,10 @@ function Navigation({ isLoaded }) {
                     <img id='navLogo' src={logo} alt='Home'></img>
                 </NavLink>
             </div>
-            {/* <div id='navloginsignup'>
-                {isLoaded && sessionLinks}
-            </div> */}
-            {/* <div>
-            </div> */}
             < div id='navloginsignup'>
                 {sessionUser &&
                     <div>
-                        <NavLink to='/spots/new'>Become a host </NavLink>
+                        <NavLink to='/spots/new'>Become a host</NavLink>
                     </div>}
                 {isLoaded &&
                     <ProfileButton

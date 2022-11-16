@@ -201,7 +201,6 @@ router.post('/', requireAuth, async (req, res, next) => {
     const ownerId = req.user.id
     const { address, city, state, country, lat, lng, name, description, price } = req.body
     if (!address || !city || !state || !country || !name || !description || !price) {
-        res.status = 400
         res.json({
             message: "Validation Error",
             statusCode: 400,

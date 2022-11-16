@@ -23,6 +23,7 @@ function EditASpot({ editSpot, image }) {
     const dispatch = useDispatch()
     const [url, setUrl] = useState('')
 
+
     useEffect(() => {
         const validationErrors = []
         if (name === ' ') validationErrors.push('Name is required.')
@@ -61,7 +62,7 @@ function EditASpot({ editSpot, image }) {
 
         // await dispatch(addAImageThunk(image))
         //await
-        await history.push('/')
+        await history.push(`/spots/${spotId}`)
     }
     const handleSubmit2 = async (e) => {
         const deleteSpot = {
@@ -69,9 +70,12 @@ function EditASpot({ editSpot, image }) {
         }
         await dispatch(deleteSpotThunk(deleteSpot))
         await dispatch(allSpotImagesThunk())
-        await history.push('/')
+        // if (!deleteSpot) return null;
+        await history.push(`/`)
 
     }
+
+
 
     return (
         <div className="createspot">
