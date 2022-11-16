@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { editSpotThunk } from "../../store/editASpotStore";
 import { useHistory } from "react-router-dom";
 import './editASpot.css';
-import { addAImageThunk } from "../../store/CreateASpotStore"
 import { deleteSpotThunk } from "../../store/deleteASpotStore"
 import { useParams } from 'react-router-dom'
 import { allSpotImagesThunk } from "../../store/allspots";
@@ -68,10 +67,10 @@ function EditASpot({ editSpot, image }) {
         const deleteSpot = {
             spotId
         }
-        await dispatch(deleteSpotThunk(deleteSpot))
-        await dispatch(allSpotImagesThunk())
         // if (!deleteSpot) return null;
-        await history.push(`/`)
+        await dispatch(deleteSpotThunk(deleteSpot))
+        // await dispatch(allSpotImagesThunk())
+        history.push(`/`)
 
     }
 

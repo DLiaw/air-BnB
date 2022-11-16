@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { createASpotThunk } from "../../store/CreateASpotStore";
 import { useHistory } from "react-router-dom";
 import './CreateASpot.css';
-import { addAImageThunk } from "../../store/CreateASpotStore";
+
 
 function CreateASpot({ newSpot }) {
     const history = useHistory()
