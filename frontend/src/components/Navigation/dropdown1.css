@@ -69,7 +69,6 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: rgb(253, 253, 253);
     font-family: 'Big Shoulders Display', cursive;
     font-family: 'Fraunces', serif;
     font-family: 'Lexend Deca', sans-serif;
@@ -100,7 +99,7 @@ a {
     transform: translateX(-45%);
     background-color: white;
     border: var(--border);
-    height: 100px;
+    height: 120px;
     border-radius: var(--border-radius);
     padding: 1rem;
     overflow: hidden;
@@ -120,13 +119,14 @@ a {
 /* profile-dropdown */
 .menu-trigger {
     background-color: white;
-    border-color: rgb(192, 189, 189);
+    border-color: rgb(203, 203, 203);
     border-radius: 25px;
     position: relative;
     height: 48px;
     display: flex;
     flex-direction: center;
     align-items: center;
+    box-shadow: 2px 1px 2px 1px rgba(0, 0, 0, 0.3);
 }
 
 .menu-trigger.inactive {
@@ -141,6 +141,7 @@ a {
     visibility: visible;
     transform: translateY(0);
     transition: var(--speed) ease;
+
 }
 
 .menu-trigger::before {
@@ -162,12 +163,14 @@ a {
 
 
 #asdf {
-    background-color: rgba(225, 23, 104, 0.98);
-    color: white;
-    width: 302px;
+    background-color: white;
+    color: rgb(121, 121, 121);
+    width: 172px;
     padding: 10px;
     border-radius: 20px;
-    font-size: 15px;
+    font-size: 20px;
+    display: flex;
+    justify-content: start;
     margin: 10px 0;
     border: none;
     outline: none;
@@ -176,4 +179,9 @@ a {
     font-family: 'Fraunces', serif;
     font-family: 'Lexend Deca', sans-serif;
     font-family: 'Montserrat', sans-serif;
+    padding-right: 10px;
+}
+
+#asdf:hover {
+    background-color: #c6c6c9;
 }

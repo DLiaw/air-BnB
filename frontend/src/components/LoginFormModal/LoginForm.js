@@ -11,6 +11,11 @@ function LoginForm({ setShowModal }) {
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
 
+    const demo = (event) => {
+        setCredential('Nhuts');
+        setPassword('1password')
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([]);
@@ -54,7 +59,7 @@ function LoginForm({ setShowModal }) {
                 </label>
                 <div className="longinsignupdiv">
                     <button id="loginsignupbutton" type="submit">Login</button>
-                    <button id="loginsignupbutton" type="submit">Demo-User</button>
+                    <button id="loginsignupbutton" type="submit" onClick={demo}>Demo-User</button>
                 </div>
             </form>
         </div>

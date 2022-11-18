@@ -4,10 +4,12 @@ import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import icon from './images/icon.png'
 import './dropdown1.css'
+import { useHistory } from 'react-router-dom';
 
 function ProfileButton({ user, setLogin, setShowModal }) {
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
+    const history = useHistory()
 
     const openMenu = () => {
         if (showMenu) return;
@@ -29,6 +31,7 @@ function ProfileButton({ user, setLogin, setShowModal }) {
     const logout = (e) => {
         e.preventDefault();
         dispatch(sessionActions.logout());
+        history.push('/')
     };
     // const username = user.username
     // const email = user.email

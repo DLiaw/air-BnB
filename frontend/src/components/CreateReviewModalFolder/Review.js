@@ -7,10 +7,9 @@ import { getReviewsThunk } from '../../store/reviewStore'
 const SingleSpotReviews = ({ spotId }) => {
     const spotReview = useSelector(state => Object.values(state.review.allReviews))
     const dispatch = useDispatch()
-
-    console.log('FFFFFFFFFFFFFFFFFFFFFFFFF', spotReview)
+    console.log('ALL SOPT REVIEWS FROM SINGLE SPOT REVIEWS', spotReview)
     useEffect(() => {
-        dispatch(getReviewsThunk(spotReview))
+        dispatch(getReviewsThunk(spotId))
     }, [dispatch, spotId])
     useEffect(() => {
     }, [spotReview])

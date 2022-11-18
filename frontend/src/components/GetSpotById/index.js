@@ -20,7 +20,7 @@ const SpotDetail = () => {
     const dispatch = useDispatch()
     const reviewNormalize = Object.values(deleteReviewSession)
     const reviewUser = reviewNormalize.find(e => e.userId == sessionUser?.id)
-    console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&', reviewUser)
+    // console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&', reviewUser.id)
 
 
     useEffect(() => {
@@ -30,11 +30,9 @@ const SpotDetail = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const deleteReview = {
-            deleteReviewSession
-        }
-        await dispatch(deleteReviewThunk(deleteReview))
-        history.push(`/spots/${spotId}`)
+
+        await dispatch(deleteReviewThunk(reviewUser.id))
+        // history.push(`/spots/${spotId}`)
     }
 
     if (!Object.values(oneSpot).length) return null;
@@ -56,12 +54,17 @@ const SpotDetail = () => {
                 <div>
                     <SingleSpotReviews spotId={spotId} />
                 </div>
-                {sessionUser.id !== reviewUser.userId && <div >
+
+                {(sessionUser?.id !== reviewUser?.userId) && (sessionUser?.id !== oneSpot.Owner.id) && < div >
                     <CreateReviewModal oneSpot={oneSpot} />
                 </div>}
-                {/* {sessionUser?.id == } */}
+
+                {sessionUser?.id == reviewUser?.userId && <div>
+                    <button onClick={handleSubmit}>Delete Review</button>
+                </div>
+                }
             </div>
-        </div>
+        </div >
     )
 
 }
