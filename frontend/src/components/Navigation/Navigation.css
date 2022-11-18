@@ -11,8 +11,10 @@
     box-sizing: border-box;
     z-index: 1;
     background-color: white;
-    ;
-
+    font-family: 'Big Shoulders Display', cursive;
+    font-family: 'Fraunces', serif;
+    font-family: 'Lexend Deca', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 #navLogo {
@@ -23,4 +25,15 @@
 #navloginsignup {
     display: flex;
     flex-direction: row;
+}
+
+.navhost {
+    margin: 20px;
+    position: relative;
+    top: 25px;
+    font-family: 'Big Shoulders Display', cursive;
+    font-family: 'Fraunces', serif;
+    font-family: 'Lexend Deca', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+
 }

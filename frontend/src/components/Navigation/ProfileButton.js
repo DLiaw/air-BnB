@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
+import icon from './images/icon.png'
+import './dropdown1.css'
 
 function ProfileButton({ user, setLogin, setShowModal }) {
     const dispatch = useDispatch();
@@ -32,27 +34,29 @@ function ProfileButton({ user, setLogin, setShowModal }) {
     // const email = user.email
     return (
         <>
-            <button onClick={openMenu}>
-                <i class="fa-solid fa-user"></i>
+            <button className="menu-trigger" onClick={openMenu}>
+                {/* <i class="fa-solid fa-user"></i> */}
+                <img alt='Log in' src={icon}></img>
             </button>
             {showMenu && (user ?
-                (<ul className="profile-dropdown">
-                    <li>{user.username}</li>
+                (<ul className="dropdown2">
+
+                    <li>Welcome back {user.username}</li>
                     <li>{user.email}</li>
                     <li>
                         <button onClick={logout}>Log Out</button>
                     </li>
                 </ul>)
                 :
-                (<ul>
-                    <li className="profile-dropdown">
-                        <button onClick={() => {
+                (<ul className="dropdown1">
+                    <li >
+                        <button id="asdf" onClick={() => {
                             setLogin(true)
                             setShowModal(true)
                         }}>Login</button>
                     </li>
-                    <li>
-                        <button onClick={() => {
+                    <li >
+                        <button id="asdf" onClick={() => {
                             setLogin(false)
                             setShowModal(true)
                         }}>Signup</button>
@@ -63,4 +67,40 @@ function ProfileButton({ user, setLogin, setShowModal }) {
     );
 }
 
+
+
 export default ProfileButton;
+
+
+
+// return (
+//     <>
+//         <button onClick={openMenu}>
+//             <i class="fa-solid fa-user"></i>
+//         </button>
+//         {showMenu && (user ?
+//             (<ul className="profile-dropdown">
+//                 <li>{user.username}</li>
+//                 <li>{user.email}</li>
+//                 <li>
+//                     <button onClick={logout}>Log Out</button>
+//                 </li>
+//             </ul>)
+//             :
+//             (<ul>
+//                 <li className="profile-dropdown">
+//                     <button onClick={() => {
+//                         setLogin(true)
+//                         setShowModal(true)
+//                     }}>Login</button>
+//                 </li>
+//                 <li>
+//                     <button onClick={() => {
+//                         setLogin(false)
+//                         setShowModal(true)
+//                     }}>Signup</button>
+//                 </li>
+//             </ul>)
+//         )}
+//     </>
+// );

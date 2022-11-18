@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { editSpotThunk } from "../../store/editASpotStore";
+import { editSpotThunk } from "../../store/spotsStore";
 import { useHistory } from "react-router-dom";
 import './editASpot.css';
-import { deleteSpotThunk } from "../../store/deleteASpotStore"
+import { deleteSpotThunk } from "../../store/spotsStore"
 import { useParams } from 'react-router-dom'
-import { allSpotImagesThunk } from "../../store/allspots";
+
 
 
 function EditASpot({ editSpot, image }) {
@@ -77,80 +77,82 @@ function EditASpot({ editSpot, image }) {
 
 
     return (
-        <div className="createspot">
-            <div>
-                <button onClick={handleSubmit2}>delete</button>
+        <div className="createspotMaindiv">
+            <div className="createspot">
+                <form onSubmit={handleSubmit}>
+                    <ul>
+                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                    </ul>
+                    <label>
+                        <input id="spotform" placeholder="Name"
+                            type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                        />
+                    </label>
+
+                    <label>
+                        <input id="spotform" placeholder="Address"
+                            type="text"
+                            value={address}
+                            onChange={(e) => setAddress(e.target.value)}
+                            required
+                        />
+                    </label>
+
+                    <label>
+                        <input id="spotform" placeholder="City"
+                            type="text"
+                            value={city}
+                            onChange={(e) => setCity(e.target.value)}
+                            required
+                        />
+                    </label>
+
+                    <label>
+                        <input id="spotform" placeholder="State"
+                            type="text"
+                            value={state}
+                            onChange={(e) => setState(e.target.value)}
+                            required
+                        />
+                    </label>
+
+                    <label>
+                        <input id="spotform" placeholder="Country"
+                            type="text"
+                            value={country}
+                            onChange={(e) => setCountry(e.target.value)}
+                            required
+                        />
+                    </label>
+
+                    <label>
+                        <input id="spotdescription" placeholder="Description"
+                            type="text"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            required
+                        />
+                    </label>
+
+                    <label>
+                        <input id="spotform" placeholder="Price"
+                            type="integer"
+                            value={price}
+                            onChange={(e) => setPrice(e.target.value)}
+                            required
+                        />
+                    </label>
+                    <div>
+                        <button id="spotbutton" type="submit">Update</button>
+                    </div>
+                    <div>
+                        <button id="spotbutton" onClick={handleSubmit2}>Remove</button>
+                    </div>
+                </form>
             </div>
-            <form onSubmit={handleSubmit}>
-                <ul>
-                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                </ul>
-                <label>
-                    <input id="spotname" placeholder="Name"
-                        type="text"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        required
-                    />
-                </label>
-
-                <label>
-                    <input id="spotaddress" placeholder="Address"
-                        type="text"
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                        required
-                    />
-                </label>
-
-                <label>
-                    <input id="spotcity" placeholder="City"
-                        type="text"
-                        value={city}
-                        onChange={(e) => setCity(e.target.value)}
-                        required
-                    />
-                </label>
-
-                <label>
-                    <input id="spotstate" placeholder="State"
-                        type="text"
-                        value={state}
-                        onChange={(e) => setState(e.target.value)}
-                        required
-                    />
-                </label>
-
-                <label>
-                    <input id="spotcountry" placeholder="Country"
-                        type="text"
-                        value={country}
-                        onChange={(e) => setCountry(e.target.value)}
-                        required
-                    />
-                </label>
-
-                <label>
-                    <input id="spotdescription" placeholder="Description"
-                        type="text"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        required
-                    />
-                </label>
-
-                <label>
-                    <input id="spotprice" placeholder="Price"
-                        type="integer"
-                        value={price}
-                        onChange={(e) => setPrice(e.target.value)}
-                        required
-                    />
-                </label>
-                <div>
-                    <button id="createSpotButton" type="submit">Update your</button>
-                </div>
-            </form>
         </div>
     )
 

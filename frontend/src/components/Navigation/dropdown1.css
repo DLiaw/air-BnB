@@ -1,0 +1,179 @@
+/* :root {
+    --bg: #242526;
+    --bg--accent: #484a4d;
+    --text-color: rgb(26, 25, 25);
+    --nav-size: 60px;
+    --border: 1px solid #474a4d;
+    --border-radius: 20px;
+    --speed: 500ms;
+} */
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-family: 'Big Shoulders Display', cursive;
+    font-family: 'Fraunces', serif;
+    font-family: 'Lexend Deca', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-family: 'Big Shoulders Display', cursive;
+    font-family: 'Fraunces', serif;
+    font-family: 'Lexend Deca', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* .navitem {
+    width: calc(var(--nav-size) * 0.8);
+    display: flex;
+    align-items: center;
+    justify-self: center;
+} */
+
+.icon-button {
+    --button-size: calc(var(var(--nav-size)* 0.5));
+    width: var(--button-size);
+    height: var(--button-size);
+    background-color: white;
+    border-radius: 20%;
+    margin: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: filter 300ms;
+
+
+}
+
+.icon-button:hover {
+    filter: brightness(1.2)
+}
+
+.dropdown2 {
+    position: absolute;
+    top: 70px;
+    height: 90px;
+    width: 170px;
+    transform: translateX(-45%);
+    background-color: white;
+    border: var(--border);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    overflow: hidden;
+    border: .5px solid #474a4d;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: rgb(253, 253, 253);
+    font-family: 'Big Shoulders Display', cursive;
+    font-family: 'Fraunces', serif;
+    font-family: 'Lexend Deca', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.menu-item {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    border-radius: var(--border-radius);
+    transition: background var(--speed);
+    padding: 0.5rem;
+    font-family: 'Big Shoulders Display', cursive;
+    font-family: 'Fraunces', serif;
+    font-family: 'Lexend Deca', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.menu-item:hover {
+    background-color: #525357;
+}
+
+.dropdown1 {
+    position: absolute;
+    top: 70px;
+    width: 170px;
+    transform: translateX(-45%);
+    background-color: white;
+    border: var(--border);
+    height: 100px;
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    overflow: hidden;
+    border: 1px solid #474a4d;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: rgb(253, 253, 253);
+    font-family: 'Big Shoulders Display', cursive;
+    font-family: 'Fraunces', serif;
+    font-family: 'Lexend Deca', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+/* profile-dropdown */
+.menu-trigger {
+    background-color: white;
+    border-color: rgb(192, 189, 189);
+    border-radius: 25px;
+    position: relative;
+    height: 48px;
+    display: flex;
+    flex-direction: center;
+    align-items: center;
+}
+
+.menu-trigger.inactive {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: var(--speed)ease;
+}
+
+.menu-trigger.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition: var(--speed) ease;
+}
+
+.menu-trigger::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    right: 20px;
+    height: 20px;
+    width: 20px;
+    background-color: var(--secondary-bg);
+    transform: rotate(45deg);
+}
+
+
+.menu-trigger:hover {
+    box-shadow: 2px 1px 2px 1px rgba(0, 0, 0, 0.3);
+
+}
+
+
+#asdf {
+    background-color: rgba(225, 23, 104, 0.98);
+    color: white;
+    width: 302px;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 15px;
+    margin: 10px 0;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-family: 'Big Shoulders Display', cursive;
+    font-family: 'Fraunces', serif;
+    font-family: 'Lexend Deca', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+}

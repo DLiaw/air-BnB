@@ -1,45 +1,46 @@
 .singleSpotTop4divs {
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     border: 20px solid brown;
+
+
 }
 
-.singleSpotPhotodiv {
+/* .singleSpotphotodiv {
     display: flex;
+    align-items: center;
     width: 600px;
     border: 20px solid blue;
-}
+} */
 
 .singleSpotImagediv {
+    /* display: grid;
+    position: relative;
+    grid-template-columns: repeat(auto-fill, 2fr); */
     display: flex;
-    justify-content: space-around;
-    border: 20px solid red;
+    flex-direction: row;
+    width: 1250px;
+    height: 440px;
 
 }
 
-#smallimg {
+#singleSpotnamediv {
     display: flex;
-    justify-content: space-evenly;
-    height: 190px;
-    width: 280px;
+    align-items: flex-end;
+    border-color: solid 2px red;
+    font-family: 'Big Shoulders Display', cursive;
+    font-family: 'Fraunces', serif;
+    font-family: 'Lexend Deca', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
-.singleSpotphotodiv {
-    border: 20px solid black;
-}
-
-#largeimg {
-
-    height: 100%;
-    width: 100%;
-
-}
-
-.singleSpotSmalldiv {
+#foursmallpics {
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-evenly;
-    border: 20px solid greenyellow;
+    width: 49%;
+    height: 48%;
+    padding-left: 1%;
 
 }
 
@@ -47,9 +48,51 @@
     gap: .5rem;
 }
 
-#smallpic2 {
+#onespotdiv {
+    border-color: solid 50px black;
+}
+
+
+.picturediv {
     display: flex;
-    flex-wrap: wrap;
-    width: 50%;
     flex-direction: row;
+
+}
+
+#mapdiv {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-family: 'Big Shoulders Display', cursive;
+    font-family: 'Fraunces', serif;
+    font-family: 'Lexend Deca', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#namereviewdiv {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    border-color: 2px solid red;
+    font-family: 'Big Shoulders Display', cursive;
+    font-family: 'Fraunces', serif;
+    font-family: 'Lexend Deca', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#reviewcreatediv {
+    width: 50%;
+    display: flex;
+
+    justify-content: space-between;
+    font-family: 'Big Shoulders Display', cursive;
+    font-family: 'Fraunces', serif;
+    font-family: 'Lexend Deca', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#onespotmaindiv {
+    border-color: 1px solid red;
+    padding-top: 100px;
+
 }

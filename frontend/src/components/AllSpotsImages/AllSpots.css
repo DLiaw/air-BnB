@@ -15,6 +15,10 @@
     grid-gap: 2.2rem;
     justify-items: center;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    font-family: 'Big Shoulders Display', cursive;
+    font-family: 'Fraunces', serif;
+    font-family: 'Lexend Deca', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 #imageNav {
@@ -29,6 +33,10 @@
     justify-content: space-between;
     padding-right: 7px;
     padding-top: 2px;
+    font-family: 'Big Shoulders Display', cursive;
+    font-family: 'Fraunces', serif;
+    font-family: 'Lexend Deca', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 #spotimage {
@@ -44,6 +52,10 @@
     padding-left: 5px;
     flex-direction: column;
     justify-content: space-evenly;
+    font-family: 'Big Shoulders Display', cursive;
+    font-family: 'Fraunces', serif;
+    font-family: 'Lexend Deca', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 
 }
 
@@ -55,6 +67,10 @@
     width: 100%;
     max-width: 500px;
     outline: none;
+    font-family: 'Big Shoulders Display', cursive;
+    font-family: 'Fraunces', serif;
+    font-family: 'Lexend Deca', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .whiteSpacediv {

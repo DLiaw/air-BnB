@@ -14,15 +14,27 @@
     margin: 8% auto 0;
     text-align: center;
     border-radius: 20px;
+    font-family: 'Big Shoulders Display', cursive;
+    font-family: 'Fraunces', serif;
+    font-family: 'Lexend Deca', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 #modal-content {
     border-radius: 20px;
+    font-family: 'Big Shoulders Display', cursive;
+    font-family: 'Fraunces', serif;
+    font-family: 'Lexend Deca', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 #signupspan {
     border-bottom: 5px;
     border-color: #999;
+    font-family: 'Big Shoulders Display', cursive;
+    font-family: 'Fraunces', serif;
+    font-family: 'Lexend Deca', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 #signupinput {
@@ -33,12 +45,20 @@
     width: 80%;
     border: 1px solid #999;
     outline: none;
+    font-family: 'Big Shoulders Display', cursive;
+    font-family: 'Fraunces', serif;
+    font-family: 'Lexend Deca', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 input::placeholder {
     font-weight: bold;
     opacity: .5;
     color: rgb(159, 157, 157);
+    font-family: 'Big Shoulders Display', cursive;
+    font-family: 'Fraunces', serif;
+    font-family: 'Lexend Deca', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 #signupbutton {
@@ -52,6 +72,10 @@ input::placeholder {
     border: none;
     outline: none;
     cursor: pointer;
+    font-family: 'Big Shoulders Display', cursive;
+    font-family: 'Fraunces', serif;
+    font-family: 'Lexend Deca', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 #signupxmark {
@@ -59,4 +83,8 @@ input::placeholder {
     top: 10px;
     left: 22px;
     cursor: pointer;
+    font-family: 'Big Shoulders Display', cursive;
+    font-family: 'Fraunces', serif;
+    font-family: 'Lexend Deca', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }

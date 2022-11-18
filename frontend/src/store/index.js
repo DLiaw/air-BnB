@@ -1,15 +1,13 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import sessionReducer from './session';
-import allSpotImagesReducer from './allspots'
-import createASpotReducer from './CreateASpotStore'
-import editASpotReducer from "./editASpotStore";
+import allSpotImagesReducer from './spotsStore';
+import createReviewReducer from "./reviewStore"
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   spot: allSpotImagesReducer,
-  newSpot: createASpotReducer,
-  editSpot: editASpotReducer
+  review: createReviewReducer
 
 });
 // reducers can be passed as props

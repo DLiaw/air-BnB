@@ -1,13 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { allSpotImagesThunk } from '../../store/allspots'
+import { allSpotImagesThunk } from '../../store/spotsStore'
 import SingleSpotCard from './SingleSpotCard';
 import './AllSpots.css'
 
 
+
 const AllSpotImage = () => {
+
     const allSpotss = useSelector(state => Object.values(state.spot.allSpots))
     // allSpots comes from reducer
+
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -26,6 +29,7 @@ const AllSpotImage = () => {
                         <SingleSpotCard key={spot.id} spot={spot} />
                     ))}
                 </div>
+
             </div>
         </div>
     )

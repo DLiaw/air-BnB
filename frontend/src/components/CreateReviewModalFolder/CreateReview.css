@@ -1,0 +1,90 @@
+input[type="radio"] {
+    display: none;
+}
+
+#rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: color 200ms;
+}
+
+.star {
+    cursor: pointer;
+    transition: color 200ms;
+}
+
+#stardiv {
+    display: flex;
+    flex-direction: column;
+}
+
+#reviewinput {
+    border-radius: 20px;
+    padding: 10px;
+    margin: 10px 0;
+    width: 80%;
+    border: 1px solid #999;
+    outline: none;
+    outline: none;
+    cursor: pointer;
+    height: 40px;
+    font-family: 'Big Shoulders Display', cursive;
+    font-family: 'Fraunces', serif;
+    font-family: 'Lexend Deca', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#reviewformdiv {
+    width: 350px;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+    background: #fff;
+    padding: 20px;
+    margin: 8% auto 0;
+    text-align: center;
+    border-radius: 20px;
+    font-family: 'Big Shoulders Display', cursive;
+    font-family: 'Fraunces', serif;
+    font-family: 'Lexend Deca', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+#reviewbutton {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(225, 23, 104, 0.98);
+    color: white;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+    width: 302px;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 15px;
+    margin: 10px 0;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 20px;
+    border: 1px solid #999;
+    margin: 26px;
+    font-family: 'Big Shoulders Display', cursive;
+    font-family: 'Fraunces', serif;
+    font-family: 'Lexend Deca', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#reviewstardiv {
+    width: 30px;
+
+}
+
+#starmaindiv {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.reviewstardiv {
+    display: flex;
+    flex-direction: column;
+}

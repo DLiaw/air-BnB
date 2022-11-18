@@ -26,7 +26,7 @@ function LoginForm({ setShowModal }) {
 
     return (
         <div className="signupform">
-            <i id="signupxmark" class="fa-solid fa-xmark" onClick={() => setShowModal(false)}> </i>
+            <i id="signupxmark" class="fa-solid fa-xmark" onClick={() => setShowModal(false)}></i>
             <span id="useremailspan">Login</span>
             <form onSubmit={handleSubmit}>
                 <ul>
@@ -54,7 +54,7 @@ function LoginForm({ setShowModal }) {
                 </label>
                 <div className="longinsignupdiv">
                     <button id="loginsignupbutton" type="submit">Login</button>
-                    <button id="loginsignupbutton" type="submit">Signup</button>
+                    <button id="loginsignupbutton" type="submit">Demo-User</button>
                 </div>
             </form>
         </div>
