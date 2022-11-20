@@ -4,13 +4,13 @@ import CreateReviewForm from './CreateReviewForm'
 import { useSelector } from 'react-redux'
 
 function CreateReviewModal({ oneSpot }) {
-
+    console.log('oneSpot', oneSpot)
     const sessionUser = useSelector(state => state.session.user);
     const [showModal, setShowModal] = useState(false)
     if (!sessionUser) return null;
     return sessionUser && sessionUser.id !== oneSpot.ownerId && (
         <div className='reviewbutton'>
-            <button onClick={() => setShowModal(true)}>Review</button>
+            <h3 id='leaveanddeletereview' onClick={() => setShowModal(true)}>Leave a review</h3>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <CreateReviewForm setShowModal={setShowModal} />

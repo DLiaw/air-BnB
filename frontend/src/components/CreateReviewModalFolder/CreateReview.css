@@ -73,16 +73,12 @@ input[type="radio"] {
     font-family: 'Montserrat', sans-serif;
 }
 
-#reviewstardiv {
-    width: 30px;
 
-}
 
 #starmaindiv {
     display: flex;
     flex-direction: row;
 }
-
 
 .reviewstardiv {
     display: flex;
@@ -91,6 +87,7 @@ input[type="radio"] {
 
 .ratingandreview {
     display: flex;
+    flex-direction: column;
     position: relative;
     top: 20px;
 }
@@ -108,11 +105,29 @@ input[type="radio"] {
     width: 650px;
 }
 
-.stopbottom {
-    border-bottom: .5px solid grey;
+
+.spotbottom {
+    border-bottom: .5px solid rgb(153, 152, 152);
     width: 650px;
 }
 
 #checkinicon {
     width: 30px;
+}
+
+.spotaircover {
+    border-bottom: .5px solid rgb(153, 152, 152);
+    width: 650px;
+}
+
+.reviewbuttonanddelete {
+    display: flex;
+    flex-direction: column;
+}
+
+.reviewbutton {
+    display: flex;
+    justify-content: start;
+    padding-top: 5px;
+
 }

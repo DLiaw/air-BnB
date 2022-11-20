@@ -55,7 +55,7 @@ a {
 .dropdown2 {
     position: absolute;
     top: 70px;
-    height: 90px;
+    height: fit-content;
     width: 170px;
     transform: translateX(-45%);
     background-color: white;
@@ -98,7 +98,7 @@ a {
     transform: translateX(-45%);
     background-color: white;
     border: var(--border);
-    height: 120px;
+    height: fit-content;
     border-radius: var(--border-radius);
     padding: 1rem;
     overflow: hidden;
@@ -154,7 +154,6 @@ a {
     transform: rotate(45deg);
 }
 
-
 .menu-trigger:hover {
     box-shadow: 2px 1px 2px 1px rgba(0, 0, 0, 0.3);
 
@@ -170,7 +169,7 @@ a {
     font-size: 20px;
     display: flex;
     justify-content: start;
-    margin: 10px 0;
+    /* margin: 10px 0; */
     border: none;
     outline: none;
     cursor: pointer;

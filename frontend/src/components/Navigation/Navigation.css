@@ -38,3 +38,19 @@
     font-family: 'Montserrat', sans-serif;
 
 }
+
+#loginmessage {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#leaveanddeletereview {
+    text-decoration: underline;
+    cursor: pointer;
+    width: fit-content;
+}
+
+#leaveanddeletereview:hover {
+    background-color: rgb(234, 237, 240);
+    padding: 1px;
+}

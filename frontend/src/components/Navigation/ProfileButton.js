@@ -44,10 +44,10 @@ function ProfileButton({ user, setLogin, setShowModal }) {
             {showMenu && (user ?
                 (<ul className="dropdown2">
 
-                    <li>Welcome back {user.username}</li>
-                    <li>{user.email}</li>
+                    <li id="loginmessage" >Welcome back {user.username}</li>
+                    <li id="loginmessage" >{user.email}</li>
                     <li>
-                        <button onClick={logout}>Log Out</button>
+                        <button id="asdf" style={{}} onClick={logout}>Log Out</button>
                     </li>
                 </ul>)
                 :
