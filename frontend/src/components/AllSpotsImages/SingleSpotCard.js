@@ -23,7 +23,6 @@ const SingleSpotCard = ({ spot }) => {
                 </div>
             </div>
         </div>
-
     )
 }
 

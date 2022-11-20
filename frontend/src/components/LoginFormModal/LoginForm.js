@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import './LoginForm.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 
 function LoginForm({ setShowModal }) {
     const dispatch = useDispatch();
@@ -31,7 +33,7 @@ function LoginForm({ setShowModal }) {
 
     return (
         <div className="signupform">
-            <i id="signupxmark" class="fa-solid fa-xmark" onClick={() => setShowModal(false)}></i>
+            <i id="signupxmark" className="fa-solid fa-xmark" onClick={() => setShowModal(false)} />
             <span id="useremailspan">Login</span>
             <form onSubmit={handleSubmit}>
                 <ul>

@@ -10,6 +10,8 @@ import SpotDetail from "./components/GetSpotById";
 import CreateASpot from "./components/CreateASpot";
 import AddImage from "./components/CreateASpot/AddImage";
 import EditASpot from "./components/EditASpot";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 
 function App() {

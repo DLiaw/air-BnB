@@ -88,3 +88,31 @@ input[type="radio"] {
     display: flex;
     flex-direction: column;
 }
+
+.ratingandreview {
+    display: flex;
+    position: relative;
+    top: 20px;
+}
+
+.spotdetailsbottom {
+    display: flex;
+    width: 650px;
+    flex-direction: column;
+    align-items: start;
+}
+
+.spottop {
+
+    border-top: .5px solid rgb(153, 152, 152);
+    width: 650px;
+}
+
+.stopbottom {
+    border-bottom: .5px solid grey;
+    width: 650px;
+}
+
+#checkinicon {
+    width: 30px;
+}

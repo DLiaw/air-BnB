@@ -36,11 +36,6 @@ router.post(
             err.status = 401;
             err.title = 'Login failed';
             err.errors = ["Invalid credentials"];
-            // return res.json({
-            //     // message: 'Login failed.',
-            //     // statusCode: err.status,
-            //     // errors: err.errors
-            // });
             return next(err)
         }
 
@@ -57,15 +52,7 @@ router.post(
         }
         await setTokenCookie(res, user);
 
-        // user['token'] = tokens
-        // delete user.createdAt
-        // delete user.updatedAt
-        // let { id, firstName, lastName, email, username } = user
-
-        return res.json(
-            // id, firstName, lastName, email, username, token
-            user
-        );
+        return res.json(user);
     }
 );
 
@@ -92,10 +79,8 @@ router.get(
     (req, res) => {
         const { user } = req;
         if (user) {
-            // const { id, firstName, lastName, email, username } = user
-            return res.json({
-                user
-            });
+
+            return res.json({ user });
         } else return res.json({ user: null });
     }
 );

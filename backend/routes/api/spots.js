@@ -9,26 +9,6 @@ const { Sequelize } = require("sequelize");
 const { raw } = require('express');
 const { Op } = require('sequelize')
 
-// const validateAll = [
-//     check('page')
-//         .isNumeric()
-//         .min(1)
-//         .max(10),
-//     check('size')
-//         .isNumeric()
-//         .min(1)
-//         .max(25),
-//     check('lat')
-//         .min(-90)
-//         .max(90),
-//     check('lng')
-//         .min(-180)
-//         .max(180),
-//     check('price')
-//         .min(0),
-//     handleValidationErrors
-// ]
-
 router.get('/', async (req, res, next) => {
     let { page, size } = req.query;
     if (!page || page <= 1 || isNaN(page)) page = 1;
@@ -58,7 +38,7 @@ router.get('/', async (req, res, next) => {
             if (link.preview) avgUrl.previewImage = link.url
 
         })
-        if (!avgUrl.previewImage) avgUrl.previewImage = 'Coming Soon!'
+        if (!avgUrl.previewImage) avgUrl.previewImage = 'https://tools420.com/wp-content/uploads/2022/01/comingsoon.jpg'
         spot.previewImage = avgUrl.previewImage
         delete spot.SpotImages
     })
@@ -88,16 +68,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/current', requireAuth, async (req, res, next) => {
     const currentId = req.user.id
-    // const spot = await Spot.findAll({
-    //     where: { ownerId: currentId },
-    //     include: [
-    //         { model: Review, attributes: [],},
-    //         { model: SpotImage, attributes: [], where: { preview: true }}],
-    //     attributes: {include: [[Sequelize.fn('avg', Sequelize.col('Reviews.stars')), 'avgStarRating'],
-    //             [Sequelize.col("SpotImages.url"), "previewImage"]]},
-    //     group: ['Spot.id']
-    // })
-    // res.json({ 'Spots': spot })
+
     const spots = await Spot.findAll({
         where: { ownerId: currentId }, include: [{ model: Review }, { model: SpotImage }]
     })
@@ -125,7 +96,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
         spot.SpotImages.forEach(link => {
             if (link.preview) avgUrl.previewImage = link.url
         })
-        if (!avgUrl.previewImage) avgUrl.previewImage = 'Coming Soon!'
+        if (!avgUrl.previewImage) avgUrl.previewImage = 'https://tools420.com/wp-content/uploads/2022/01/comingsoon.jpg'
         spot.previewImage = avgUrl.previewImage
         delete spot.SpotImages
     })
@@ -144,21 +115,7 @@ router.get('/:spotId', async (req, res, next) => {
         })
     }
 
-    // const spot = await Spot.findOne({
-    //     where: { id: spotId },
-    //     include: [
-    //         { model: SpotImage, attributes: ['id', 'url', 'preview'] },
-    //         { model: User, as: 'Owner', attributes: ['id', 'firstName', 'lastName'] },
-    //         { model: Review, attributes: [] }
-    //     ],
-    //     attributes: {
-    //         include: [
-    //             [Sequelize.fn('COUNT', Sequelize.col('Reviews.id')), 'numReviews'],
-    //             [Sequelize.fn('avg', Sequelize.col('Reviews.stars')), 'avgStarRating'],
 
-    //         ]
-    //     }
-    // })
     const spot = await Spot.findAll({
         where: { id: spotId }, include: [
             { model: SpotImage, attributes: ['id', 'url', 'preview'] },
@@ -197,7 +154,37 @@ router.get('/:spotId', async (req, res, next) => {
 
 })
 
-router.post('/', requireAuth, async (req, res, next) => {
+const validateCreate = [
+    check('name')
+        .exists({ checkFasly: true })
+        .isLength({ min: 1 })
+        .withMessage('Please provide a first name.'),
+    check('address')
+        .exists({ checkFasly: true })
+        .withMessage("Please provide an address."),
+    check('city')
+        .exists({ checkFasly: true })
+        .withMessage('Please provide a city.'),
+    check('state')
+        .exists({ checkFasly: true })
+        .withMessage('Please provide a state.'),
+    check('country')
+        .exists({ checkFasly: true })
+        .withMessage('Please provide a country'),
+    check('description')
+        .exists({ checkFasly: true })
+        .isLength({ min: 20, max: 250 })
+        .withMessage('Description must be between 20 and 250 characters.'),
+    check('price')
+        .exists({ checkFasly: true })
+        .isNumeric({ checkFasly: true })
+        .withMessage('Price must be a number.'),
+    handleValidationErrors
+]
+
+
+
+router.post('/', validateCreate, requireAuth, async (req, res, next) => {
     const ownerId = req.user.id
     const { address, city, state, country, lat, lng, name, description, price } = req.body
     if (!address || !city || !state || !country || !name || !description || !price) {
@@ -253,8 +240,40 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
         res.json({ id: image.id, url, preview })
 })
 
+const validateUpdate = [
+    check('name')
+        .exists({ checkFasly: true })
+        .isLength({ min: 1 })
+        .withMessage('Please provide a first name.'),
+    check('address')
+        .exists({ checkFasly: true })
+        .withMessage("Please provide an address."),
+    check('city')
+        .exists({ checkFasly: true })
+        .withMessage('Please provide a city.'),
+    check('state')
+        .exists({ checkFasly: true })
+        .withMessage('Please provide a state.'),
+    check('country')
+        .exists({ checkFasly: true })
+        .withMessage('Please provide a country'),
+    check('description')
+        .exists({ checkFasly: true })
+        .isLength({ min: 20, max: 250 })
+        .withMessage('Description must be between 20 and 250 characters.'),
+    check('price')
+        .exists({ checkFasly: true })
+        .isNumeric({ checkFasly: true })
+        .withMessage('Price must be a number.'),
+    check('url')
+        .exists({ checkFasly: true })
+        .contains('.png' || '.jpg')
+        .withMessage('Please provide a valid url.'),
+    handleValidationErrors
 
-router.put('/:spotId', requireAuth, async (req, res) => {
+]
+
+router.put('/:spotId', validateUpdate, requireAuth, async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body
     const spotId = req.params.spotId
     const spot = await Spot.findByPk(spotId)

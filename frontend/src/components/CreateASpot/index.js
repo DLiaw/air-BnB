@@ -35,8 +35,7 @@ function CreateASpot({ newSpot }) {
         if (country.length > 30) validationErrors.push('Country must be under 30 characters.')
         if (description.length > 200) validationErrors.push('Address must be under 200 characters.')
         if (price !== '' && price < 1) validationErrors.push('Price must be at least $1.')
-        if (url.length === ' ') validationErrors.push('Url is required.')
-        // if (url.split(':') === undefined) validationErrors.push('Must be a valid url address.')
+
         setErrors(validationErrors)
     }, [name, address, city, state, country, description, price, url])
 
@@ -52,10 +51,16 @@ function CreateASpot({ newSpot }) {
             price,
             url
         }
-        const createOne = await dispatch(createASpotThunk(newSpot))
 
-        // await dispatch(addAImageThunk(image))
-        //await
+
+        const createOne = await dispatch(createASpotThunk(newSpot)).catch(
+            async (res) => {
+                const data = await res.json();
+                if (data && data.errors) setErrors(data.errors);
+            }
+        )
+
+
         if (createOne) history.push(`/spots/${createOne.id}`)
 
 
@@ -66,7 +71,7 @@ function CreateASpot({ newSpot }) {
             <div className="createspot">
                 <form onSubmit={handleSubmit}>
                     <ul>
-                        {errors.length > 0 && errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                        {errors.length > 0 && errors.map((error, idx) => <li id="errormessages" key={idx}>{error}</li>)}
                     </ul>
                     <label>
                         <input id="spotform" placeholder="Name"
@@ -114,7 +119,7 @@ function CreateASpot({ newSpot }) {
                     </label>
 
                     <label>
-                        <input id="spotdescription" placeholder="Description"
+                        <textarea id="spotdescription" placeholder="Description"
                             type="text"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
@@ -135,7 +140,6 @@ function CreateASpot({ newSpot }) {
                             type="text"
                             value={url}
                             onChange={(e) => setUrl(e.target.value)}
-                            required
                         />
                     </label>
                     <div>

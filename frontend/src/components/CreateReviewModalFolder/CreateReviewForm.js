@@ -49,7 +49,7 @@ function CreateAReview({ setShowModal }) {
                     {errors.length > 0 && errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
                 <div>
-                    <input id="reviewinput" placeholder="Tell everyone about your experience."
+                    <textarea id="reviewinput" placeholder="Tell everyone about your experience."
                         type="text"
                         value={newReview}
                         onChange={(e) => setNewReview(e.target.value)}

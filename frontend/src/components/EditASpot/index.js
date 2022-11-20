@@ -55,21 +55,23 @@ function EditASpot({ editSpot, image }) {
             price,
             spotId
         }
-        // const id = await
-        await dispatch(editSpotThunk(editSpot))
-        // editSpot.id = id.id
 
-        // await dispatch(addAImageThunk(image))
-        //await
+        await dispatch(editSpotThunk(editSpot)).catch(
+            async (res) => {
+                const data = await res.json();
+                if (data && data.errors) setErrors(data.errors);
+            }
+        )
+
         await history.push(`/spots/${spotId}`)
     }
     const handleSubmit2 = async (e) => {
         const deleteSpot = {
             spotId
         }
-        // if (!deleteSpot) return null;
+
         await dispatch(deleteSpotThunk(deleteSpot))
-        // await dispatch(allSpotImagesThunk())
+
         history.push(`/`)
 
     }
@@ -81,7 +83,7 @@ function EditASpot({ editSpot, image }) {
             <div className="createspot">
                 <form onSubmit={handleSubmit}>
                     <ul>
-                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                        {errors.map((error, idx) => <li id="errormessages" key={idx}>{error}</li>)}
                     </ul>
                     <label>
                         <input id="spotform" placeholder="Name"
@@ -129,7 +131,7 @@ function EditASpot({ editSpot, image }) {
                     </label>
 
                     <label>
-                        <input id="spotdescription" placeholder="Description"
+                        <textarea id="spotdescription" placeholder="Description"
                             type="text"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}

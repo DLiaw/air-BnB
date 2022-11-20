@@ -13,17 +13,16 @@ const singleSpot = ({ oneSpot }) => {
     ))
 
     return (
+
         <div className="singleSpotMainDiv">
             <div className="singleSpotTop4divs">
+                <h1>{oneSpot.description}</h1>
                 <div id='namereviewdiv'>
                     <div id="singleSpotnamediv">
-                        <div>
-                            {oneSpot.name}
-                        </div>
                     </div>
                     <div id="singleSpotdivReview">
-                        <div >
-                            {oneSpot.numReviews} reviews, ★{oneSpot.avgStarRating}
+                        <div style={{ fontSize: '20px' }}>
+                            ⭐{oneSpot.avgStarRating}    ✦ {oneSpot.numReviews} reviews ✦ {oneSpot.name}, {oneSpot.country}
                         </div>
                     </div>
                 </div>
@@ -32,7 +31,7 @@ const singleSpot = ({ oneSpot }) => {
                         <div id="singlespotmainpic">
                             <img style={{ height: '432px', widht: '540px' }}
                                 alt={oneSpot.name}
-                                src={previewImg[0].url}></img>
+                                src={previewImg[0].url ? previewImg[0].url : 'https://tools420.com/wp-content/uploads/2022/01/comingsoon.jpg'}></img>
                         </div>
                         <div id='mapdiv'>
                             {previewFalse.map(each => (
@@ -40,7 +39,7 @@ const singleSpot = ({ oneSpot }) => {
                                     key={each.id}>
                                     <img style={{ height: '100%', width: '100%' }}
                                         alt={oneSpot.name}
-                                        src={each.url}></img>
+                                        src={each.url ? each.url : 'https://tools420.com/wp-content/uploads/2022/01/comingsoon.jpg'}></img>
                                 </div>
                             ))}
                         </div>
@@ -48,6 +47,7 @@ const singleSpot = ({ oneSpot }) => {
                 </div>
             </div>
         </div >
+
     )
 }
 

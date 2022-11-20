@@ -1,12 +1,15 @@
 {
   "dependencies": {
-    "pg": "^8.8.0"
+    "@fortawesome/fontawesome-svg-core": "^6.2.1",
+    "@fortawesome/free-solid-svg-icons": "^6.2.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "pg": "^8.8.0",
+    "react-icons": "^4.6.0"
   },
   "name": "authenticate-me",
   "description": "## Database Schema Design",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "heroku-postbuild": "npm run build --prefix frontend",
     "install": "npm --prefix backend install backend && npm --prefix frontend install frontend",

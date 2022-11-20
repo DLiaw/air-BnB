@@ -1,6 +1,6 @@
 import { csrfFetch } from "./csrf"
 
-
+const CLEAN_UP = 'cleanup/review'
 const CREATE_A_REVIEW = 'create/review'
 const GET_ALL_REVIEWS = 'get/reviews'
 const DELETE_REVIEW = 'delete/review'
@@ -26,15 +26,20 @@ const getReviewsAction = (reviewSpotId) => {
     }
 }
 
+export const cleanUp = () => {
+    return {
+        type: CLEAN_UP
+    }
+}
+
 export const deleteReviewThunk = (id) => async (dispatch) => {
-    console.log('RECEIVING ID FROM FRONTEND', id)
 
     const response = await csrfFetch(`/api/reviews/${id}`, {
         method: 'DELETE'
     })
     if (response.ok) {
         const data = await response.json()
-        console.log('deleted review from response', data)
+
         dispatch(deleteReviewAction(id))
     }
 
@@ -77,7 +82,6 @@ export default function createReviewReducer(state = { createReview: {}, allRevie
             action.reviewSpotId.Reviews.forEach(review => {
                 newState.allReviews[review.id] = review
             })
-            console.log('GET ALL REVIEWS CASE FROM REDUCER', newState)
             return newState
         }
 
@@ -86,6 +90,12 @@ export default function createReviewReducer(state = { createReview: {}, allRevie
             delete newState.allReviews[action.id]
             return newState;
         }
+
+        case CLEAN_UP: {
+            const newState = { createReview: {}, allReviews: {} }
+            return newState
+        }
+
         default:
             return state
     }

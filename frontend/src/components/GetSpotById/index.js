@@ -8,6 +8,7 @@ import CreateReviewModal from '../CreateReviewModalFolder';
 import SingleSpotReviews from '../CreateReviewModalFolder/Review';
 import { useHistory } from 'react-router-dom';
 import { deleteReviewThunk } from '../../store/reviewStore';
+import { cleanUp } from '../../store/reviewStore';
 
 const SpotDetail = () => {
     const history = useHistory()
@@ -20,12 +21,13 @@ const SpotDetail = () => {
     const dispatch = useDispatch()
     const reviewNormalize = Object.values(deleteReviewSession)
     const reviewUser = reviewNormalize.find(e => e.userId == sessionUser?.id)
-    // console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&', reviewUser.id)
 
 
     useEffect(() => {
         dispatch(getSpotByIdThunk(spotId))
             .then(() => { setLoaded(true) })
+
+        return () => dispatch(cleanUp())
     }, [dispatch], spotId)
 
     const handleSubmit = async (e) => {
@@ -39,31 +41,33 @@ const SpotDetail = () => {
 
     // const user = sessionUser.id
     return (
-        <div id='onespotmaindiv'>
-            <div id='onespotdiv'>
-                <div >
-                    <SingleSpot oneSpot={oneSpot} />
+        <div className='singlespot-wrapper'>
+            <div id='onespotmaindiv'>
+                <div id='onespotdiv'>
+                    <div >
+                        <SingleSpot oneSpot={oneSpot} />
+                    </div>
                 </div>
-            </div>
-            {sessionUser?.id == oneSpot.ownerId && sessionUser && <div>
-                <NavLink to={`/spots/${oneSpot.id}/edit`}>
-                    <button>Edit</button>
-                </NavLink>
-            </div>}
-            <div id="reviewcreatediv">
-                <div>
-                    <SingleSpotReviews spotId={spotId} />
-                </div>
-
-                {(sessionUser?.id !== reviewUser?.userId) && (sessionUser?.id !== oneSpot.Owner.id) && < div >
-                    <CreateReviewModal oneSpot={oneSpot} />
+                {sessionUser?.id == oneSpot.ownerId && sessionUser && <div>
+                    <NavLink to={`/spots/${oneSpot.id}/edit`}>
+                        <button>Edit</button>
+                    </NavLink>
                 </div>}
+                <div id="reviewcreatediv">
+                    <div>
+                        <SingleSpotReviews spotId={spotId} />
+                    </div>
 
-                {sessionUser?.id == reviewUser?.userId && <div>
-                    <button onClick={handleSubmit}>Delete Review</button>
+                    {(sessionUser?.id !== reviewUser?.userId) && (sessionUser?.id !== oneSpot.Owner.id) && < div >
+                        <CreateReviewModal oneSpot={oneSpot} />
+                    </div>}
+
+                    {(sessionUser?.id == reviewUser?.userId) && sessionUser && <div>
+                        <button onClick={handleSubmit}>Delete Review</button>
+                    </div>
+                    }
                 </div>
-                }
-            </div>
+            </div >
         </div >
     )
 

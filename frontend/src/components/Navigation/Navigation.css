@@ -1,5 +1,4 @@
 .navmaindiv {
-    position: relative;
     display: flex;
     justify-content: space-between;
     border-bottom: solid 1px rgb(225, 223, 223);
@@ -7,6 +6,8 @@
     height: 80px;
     padding: 0 8rem 0 8rem;
     position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     box-sizing: border-box;
     z-index: 1;

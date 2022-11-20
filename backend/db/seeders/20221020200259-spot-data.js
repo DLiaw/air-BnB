@@ -4,13 +4,13 @@ const spots = [
   {
     ownerId: 1,
     address: '142-02 Cherry Ave.',
-    city: 'New York',
+    city: 'Antalya',
     state: 'NY',
-    country: 'USA',
+    country: 'Turkey',
     lat: 74.00,
     lng: 40.00,
-    name: 'NY Crib',
-    description: 'Best bang for your buck at NYC!',
+    name: '	Antalya Crib ',
+    description: 'Beachfront with a View and Amenities Galore',
     price: 5200.00
   },
   {
@@ -22,7 +22,7 @@ const spots = [
     lat: 88.00,
     lng: 66.00,
     name: 'Kuala Lumpur Crib',
-    description: 'Near all the attractions',
+    description: 'Oceanfront Gem Beach Studio Exceptional Views!',
     price: 3300.00
   },
   {
@@ -34,7 +34,7 @@ const spots = [
     lat: 44.00,
     lng: 68.00,
     name: 'Taipei Crib',
-    description: 'Hottest spot in town!',
+    description: 'Waterfront Cottage ❤️ Private Beach, Dock & Kayaks',
     price: 3500.00
   },
   {
@@ -46,7 +46,7 @@ const spots = [
     lat: 64.00,
     lng: 44.00,
     name: 'Bali Crib',
-    description: 'Warm and cozy!',
+    description: 'Private Beach Front house Bali, Indonesia',
     price: 3850.00
   },
   {
@@ -58,7 +58,7 @@ const spots = [
     lat: 86.00,
     lng: 68.00,
     name: 'Barcelona Crib',
-    description: 'Newly renovated.',
+    description: 'Secluded Log Cabin, Amazing Views, Hot Tub & Wifi!',
     price: 2450.00
   }
   ,
@@ -71,7 +71,7 @@ const spots = [
     lat: 64.00,
     lng: 44.00,
     name: 'Dubai Crib',
-    description: 'Warm and cozy!',
+    description: 'Peaceful Beachside Retreat at Dubai, United Arab Emirates',
     price: 4250.00
   },
 
@@ -97,7 +97,7 @@ const spots = [
     lat: 64.00,
     lng: 44.00,
     name: 'London Crib',
-    description: 'Warm and cozy!',
+    description: 'Sunsets on the Lake-Hot tub with Lake view!',
     price: 2250.00
   },
 
@@ -110,7 +110,7 @@ const spots = [
     lat: 64.00,
     lng: 44.00,
     name: 'Singapore Crib',
-    description: 'Warm and cozy!',
+    description: 'Beautiful Lakefront Onsite Pool/Spa/Boats & Beach',
     price: 3250.00
   },
 
@@ -123,7 +123,7 @@ const spots = [
     lat: 64.00,
     lng: 44.00,
     name: 'Bangkok Crib',
-    description: 'Warm and cozy!',
+    description: 'Large 8 Bedroom Cottage with Beach',
     price: 1250.00
   },
 
@@ -136,7 +136,7 @@ const spots = [
     lat: 64.00,
     lng: 44.00,
     name: 'Osaka Crib',
-    description: 'Warm and cozy!',
+    description: 'Beautiful Lake Front Cottage With A VIEW',
     price: 2500.00
   },
 
@@ -149,7 +149,7 @@ const spots = [
     lat: 64.00,
     lng: 44.00,
     name: 'Seoul Crib',
-    description: 'Warm and cozy!',
+    description: 'Vista Estate On Lake Heaven Lake',
     price: 2650.00
   },
 
@@ -162,7 +162,7 @@ const spots = [
     lat: 64.00,
     lng: 44.00,
     name: 'Tokyo Crib',
-    description: 'Warm and cozy!',
+    description: 'Hidden Haven - 5 Bed Villa with pool & Sea Views',
     price: 2750.00
   },
 

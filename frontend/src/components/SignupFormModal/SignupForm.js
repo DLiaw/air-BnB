@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import './SignupForm.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+
 
 function SignupFormPage({ setShowModal }) {
     const dispatch = useDispatch();
@@ -36,7 +39,7 @@ function SignupFormPage({ setShowModal }) {
 
     return (
         <div className="signupform">
-            <i id="signupxmark" class="fa-solid fa-xmark" onClick={() => setShowModal(false)}> </i>
+            <i id="signupxmark" class="fa-solid fa-xmark" onClick={() => setShowModal(false)}></i>
 
             <span id="signupspan">Signup</span>
             <form onSubmit={handleSubmit} >
