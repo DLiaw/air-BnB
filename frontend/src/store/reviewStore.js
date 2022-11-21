@@ -72,13 +72,13 @@ export default function createReviewReducer(state = { createReview: {}, allRevie
 
     switch (action.type) {
         case CREATE_A_REVIEW: {
-            const newState = { ...state, createReview: {}, allReviews: {} }
+            const newState = { ...state, createReview: { ...state.createReview }, allReviews: { ...state.Reviews } }
             newState.createReview = action.newReviews
             return newState
         }
 
         case GET_ALL_REVIEWS: {
-            const newState = { createReview: {}, allReviews: {} }
+            const newState = { createReview: { ...state.createReview }, allReviews: { ...state.allReviews } }
             action.reviewSpotId.Reviews.forEach(review => {
                 newState.allReviews[review.id] = review
             })
@@ -92,7 +92,7 @@ export default function createReviewReducer(state = { createReview: {}, allRevie
         }
 
         case CLEAN_UP: {
-            const newState = { createReview: {}, allReviews: {} }
+            const newState = { createReview: { ...state.createReview }, allReviews: { ...state.allReviews } }
             return newState
         }
 
