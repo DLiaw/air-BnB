@@ -4,7 +4,7 @@ import CreateReviewForm from './CreateReviewForm'
 import { useSelector } from 'react-redux'
 
 function CreateReviewModal({ oneSpot }) {
-    console.log('oneSpot', oneSpot)
+
     const sessionUser = useSelector(state => state.session.user);
     const [showModal, setShowModal] = useState(false)
     if (!sessionUser) return null;
