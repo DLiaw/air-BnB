@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { allSpotImagesThunk } from '../../store/spotsStore'
 import SingleSpotCard from './SingleSpotCard';
 import './AllSpots.css'
-
+import { NavLink } from 'react-router-dom';
 
 
 const AllSpotImage = () => {
@@ -29,7 +29,13 @@ const AllSpotImage = () => {
                         <SingleSpotCard key={spot.id} spot={spot} />
                     ))}
                 </div>
+            </div>
+            <div className='bottombar'>
+                <div><h3>Connect:&nbsp;&nbsp;&nbsp;&nbsp;</h3></div>
 
+                <a href='https://github.com/DLiaw'> <i class="fa-brands fa-github fa-2xl" />&nbsp;github</a>
+                <a href='https://www.linkedin.com/in/david-liaw-55a510251/'> &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-brands fa-linkedin fa-2xl">&nbsp;</i>Linkedin</a>
+                <a href='DL0429922@gmail.com'>&nbsp;&nbsp;&nbsp;&nbsp; <i class="fa-solid fa-envelope fa-2xl">&nbsp;</i>Email</a>
             </div>
         </div>
     )

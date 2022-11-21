@@ -19,7 +19,7 @@ function Navigation({ isLoaded }) {
         <div className='navmaindiv'>
             <div id='navhomebutton'>
                 <NavLink exact to="/">
-                    <img id='navLogo' src={logo} alt='Home'></img>
+                    <img id='navLogo' src={logo} alt='Home' />
                 </NavLink>
             </div>
             <div className='becomehostandicon'>

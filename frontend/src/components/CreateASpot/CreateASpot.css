@@ -94,7 +94,7 @@
     background-color: rgba(225, 23, 104, 0.98);
     color: white;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
-    width: 302px;
+    width: 342px;
     padding: 10px;
     border-radius: 20px;
     font-size: 15px;
@@ -104,7 +104,7 @@
     cursor: pointer;
     border-radius: 20px;
     border: 1px solid #999;
-    margin: 26px;
+    /* margin: 26px; */
     font-family: 'Big Shoulders Display', cursive;
     font-family: 'Fraunces', serif;
     font-family: 'Lexend Deca', sans-serif;

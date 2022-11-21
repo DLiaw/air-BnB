@@ -50,7 +50,7 @@ const SpotDetail = () => {
                 </div>
                 {sessionUser?.id == oneSpot.ownerId && sessionUser && <div>
                     <NavLink to={`/spots/${oneSpot.id}/edit`}>
-                        <button>Edit</button>
+                        <h3 style={{ textDecoration: 'underline' }}>Edit your listing</h3>
                     </NavLink>
                 </div>}
                 <div id="reviewcreatediv">

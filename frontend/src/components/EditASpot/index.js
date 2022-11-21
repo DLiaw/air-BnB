@@ -5,11 +5,12 @@ import { useHistory } from "react-router-dom";
 import './editASpot.css';
 import { deleteSpotThunk } from "../../store/spotsStore"
 import { useParams } from 'react-router-dom'
-
-
+import { useSelector } from "react-redux";
+import { allSpotImagesThunk } from '../../store/spotsStore'
 
 function EditASpot({ editSpot, image }) {
     const { spotId } = useParams()
+    const getSpotDetail = useSelector(state => state.spot.singleSpot)
     const history = useHistory()
     const [name, setName] = useState('');
     const [address, setAddress] = useState('');
@@ -38,10 +39,20 @@ function EditASpot({ editSpot, image }) {
         if (country.length > 30) validationErrors.push('Country must be under 30 characters.')
         if (description.length > 200) validationErrors.push('Address must be under 200 characters.')
         if (price !== '' && price < 1) validationErrors.push('Price must be at least $1.')
-        if (url.length === ' ') validationErrors.push('Url is required.')
-        if (url.split('.') === undefined) validationErrors.push('Must be a valid url address.')
+        // if (url.length === ' ') validationErrors.push('Url is required.')
+        // if (url.split('.') === undefined) validationErrors.push('Must be a valid url address.')
         setErrors(validationErrors)
     }, [name, address, city, state, country, description, price, url])
+
+    useEffect(() => {
+        setAddress(getSpotDetail.address);
+        setCity(getSpotDetail.city);
+        setState(getSpotDetail.state);
+        setCountry(getSpotDetail.country);
+        setName(getSpotDetail.name);
+        setDescription(getSpotDetail.description);
+        setPrice(getSpotDetail.price);
+    }, [getSpotDetail]);
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -56,24 +67,30 @@ function EditASpot({ editSpot, image }) {
             spotId
         }
 
-        await dispatch(editSpotThunk(editSpot)).catch(
+        const editOne = await dispatch(editSpotThunk(editSpot)).catch(
             async (res) => {
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors);
             }
         )
 
-        await history.push(`/spots/${spotId}`)
+        if (editOne) await history.push(`/spots/${spotId}`)
     }
+
+
+
     const handleSubmit2 = async (e) => {
         const deleteSpot = {
             spotId
         }
 
-        await dispatch(deleteSpotThunk(deleteSpot))
-
         history.push(`/`)
 
+        await dispatch(deleteSpotThunk(deleteSpot))
+
+        const refresh = await dispatch(allSpotImagesThunk())
+
+        if (!refresh) return null;
     }
 
 

@@ -4,6 +4,9 @@ import { getReviewsThunk } from '../../store/reviewStore'
 import CreateReviewModal from '.';
 import aircover from '../images/aircover.png'
 import { deleteReviewThunk } from '../../store/reviewStore';
+import { getSpotByIdThunk } from '../../store/spotsStore';
+
+
 const SingleSpotReviews = ({ spotId }) => {
     const spotReview = useSelector(state => Object.values(state.review.allReviews))
     const oneSpot = useSelector(state => state.spot.singleSpot)
@@ -13,6 +16,8 @@ const SingleSpotReviews = ({ spotId }) => {
     const reviewNormalize = Object.values(deleteReviewSession)
     const reviewUser = reviewNormalize.find(e => e.userId == sessionUser?.id)
     const dispatch = useDispatch()
+
+
     useEffect(() => {
         dispatch(getReviewsThunk(spotId))
     }, [dispatch, spotId])
@@ -23,13 +28,14 @@ const SingleSpotReviews = ({ spotId }) => {
         e.preventDefault()
 
         await dispatch(deleteReviewThunk(reviewUser.id))
+        await dispatch(getSpotByIdThunk(spotId))
         // history.push(`/spots/${spotId}`)
     }
-    if (!Object.values(spotReview).length) return null;
+    // if (!Object.values(spotReview).length) return null;
 
     return (
         <div className='spotdetailsbottom'>
-            <div><h2><i class="fa-solid fa-house-chimney" /> Hosted by {spot.Owner.firstName}</h2></div>
+            <div><h2><i class="fa-solid fa-house-chimney" /> Hosted by {spot?.Owner?.firstName}</h2></div>
             <div className='spottop'>
 
                 <h3><i id='checkinicon' className="fa-solid fa-building-circle-check" /> Self check-in</h3>
@@ -56,15 +62,13 @@ const SingleSpotReviews = ({ spotId }) => {
                             ⭐{spot.stars} ✦ {spot.review} Left by {spot.User.firstName}
                         </div>
                     </div>
-                ))},
+                ))}
                 {(sessionUser?.id !== reviewUser?.userId) && (sessionUser?.id !== oneSpot.Owner.id) && < div className='reviewbutton' >
                     <CreateReviewModal oneSpot={oneSpot} />
-                </div>},
+                </div>}
                 {(sessionUser?.id == reviewUser?.userId) && sessionUser && <div>
                     <h3 id='leaveanddeletereview' onClick={handleSubmit}>Delete Review</h3>
-                </div>
-                }
-
+                </div>}
             </div>
         </div>
     )

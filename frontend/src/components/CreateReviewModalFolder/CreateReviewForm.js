@@ -6,7 +6,7 @@ import './CreateReview.css';
 import Rating from "./StarRating2";
 import Rate from "./Rate";
 import { getReviewsThunk } from '../../store/reviewStore'
-
+import { getSpotByIdThunk } from '../../store/spotsStore'
 
 function CreateAReview({ setShowModal }) {
     const { spotId } = useParams()
@@ -32,6 +32,7 @@ function CreateAReview({ setShowModal }) {
 
         const reviewCreated = await dispatch(createReviewThunk(userReview)).then();
         await dispatch(getReviewsThunk(spotId))
+        await dispatch(getSpotByIdThunk(spotId))
         setShowModal(false)
 
         if (reviewCreated) history.push(`/spots/${spotId}`)

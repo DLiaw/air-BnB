@@ -265,10 +265,6 @@ const validateUpdate = [
         .exists({ checkFasly: true })
         .isNumeric({ checkFasly: true })
         .withMessage('Price must be a number.'),
-    check('url')
-        .exists({ checkFasly: true })
-        .contains('.png' || '.jpg')
-        .withMessage('Please provide a valid url.'),
     handleValidationErrors
 
 ]
