@@ -1,4 +1,10 @@
 'use strict';
+
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
+
 const { User, Spot, Booking, ReviewImage, Review, SpotImage } = require('../models')
 /** @type {import('sequelize-cli').Migration} */
 const bcrypt = require("bcryptjs");
@@ -52,6 +58,9 @@ module.exports = {
      * }], {});
     */
     await User.bulkCreate(users, { validate: true })
+    return queryInterface.bulkInsert(options, [ // pass in options object here
+      // ...
+    ]);
   },
 
   async down(queryInterface, Sequelize) {
@@ -62,5 +71,6 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
     await queryInterface.bulkDelete('Users', null, {})
+    return queryInterface.bulkDelete(options); // pass in options object here
   }
 };

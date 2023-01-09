@@ -446,7 +446,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
         })
     }
     const newThisSpotId = thisSpotId.toJSON()
-    // console.log(newThisSpotId) checking if toJSON needed
+
     newThisSpotId.Bookings.forEach(date => {
         if (date.startDate >= startDate && date.endDate < endDate) {
             res.json({
