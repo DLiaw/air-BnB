@@ -101,7 +101,6 @@ module.exports = {
      * }], {});
     */
     await Review.bulkCreate(reviews, { validate: true })
-
   },
 
   async down(queryInterface, Sequelize) {

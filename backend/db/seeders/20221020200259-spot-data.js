@@ -181,7 +181,6 @@ module.exports = {
     */
 
     await Spot.bulkCreate(spots, { validate: true })
-
   },
 
   async down(queryInterface, Sequelize) {

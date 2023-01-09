@@ -47,7 +47,6 @@ module.exports = {
     */
 
     await Booking.bulkCreate(bookings, { validate: true })
-
   },
 
   async down(queryInterface, Sequelize) {

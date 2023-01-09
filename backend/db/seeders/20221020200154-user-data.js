@@ -58,9 +58,6 @@ module.exports = {
      * }], {});
     */
     await User.bulkCreate(users, { validate: true })
-    return queryInterface.bulkInsert(options, [ // pass in options object here
-      // ...
-    ]);
   },
 
   async down(queryInterface, Sequelize) {
@@ -71,6 +68,5 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
     await queryInterface.bulkDelete('Users', null, {})
-    return queryInterface.bulkDelete(options); // pass in options object here
   }
 };
