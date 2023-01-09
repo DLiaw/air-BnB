@@ -42,23 +42,3 @@ const AllSpotImage = () => {
 }
 
 export default AllSpotImage;
-// right now allSpots is an object
-// need to conver to array
-// map each spot out
-// either display it or pass to another component
-    // let norAllSpots;
-    // norAllSpots = Object.values(allSpots)
-    // const [spot, setSpot] = useState([])
-
-    // useEffect(() => {
-    //     console.log(norAllSpots)
-    //     console.log(state, price, country, previewImage)
-    // }, [allSpots])
-
-
-    // action thunk reducer
-    // pass in to root reducer
-    // create folder / index
-    // create optional component
-    // pass to app to render make sure to route it
-    // make sure to import everything !!

@@ -1,6 +1,5 @@
 import React, { useMemo } from "react";
 import PropTypes from 'prop-types';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from "react";
 import { FaStar } from 'react-icons/fa'
 

@@ -23,27 +23,6 @@ function EditASpot({ editSpot, image }) {
     const dispatch = useDispatch()
     const [url, setUrl] = useState('')
 
-
-    // useEffect(() => {
-    //     const validationErrors = []
-    //     if (name === ' ') validationErrors.push('Name is required.')
-    //     if (address === ' ') validationErrors.push('Address is required.')
-    //     if (city === ' ') validationErrors.push('City is required.')
-    //     if (state === ' ') validationErrors.push('State is required.')
-    //     if (country === ' ') validationErrors.push('Country is required.')
-    //     if (description === ' ') validationErrors.push('Description is required.')
-    //     if (price === ' ') validationErrors.push('Price is required.')
-    //     if (name.length > 30) validationErrors.push('Name must be under 30 characters.')
-    //     if (city.length > 30) validationErrors.push('City must be under 30 characters.')
-    //     if (state.length > 30) validationErrors.push('State must be under 30 characters.')
-    //     if (country.length > 30) validationErrors.push('Country must be under 30 characters.')
-    //     if (description.length > 200) validationErrors.push('Address must be under 200 characters.')
-    //     if (price !== '' && price < 1) validationErrors.push('Price must be at least $1.')
-    //     // if (url.length === ' ') validationErrors.push('Url is required.')
-    //     // if (url.split('.') === undefined) validationErrors.push('Must be a valid url address.')
-    //     setErrors(validationErrors)
-    // }, [name, address, city, state, country, description, price])
-
     useEffect(() => {
         setAddress(getSpotDetail.address);
         setCity(getSpotDetail.city);

@@ -6,30 +6,30 @@ import { Modal } from '../../context/Modal';
 import LoginForm from '../LoginFormModal/LoginForm';
 import SignupForm from '../SignupFormModal/SignupForm';
 import { useSelector } from 'react-redux';
-import
-    // function DropdownMenu() {
-    //     const [open, setOpen] = useState(0)
-    //     const sessionUser = useSelector(state => state.session.user);
 
-    //     return (
-    //         <div>
+// function DropdownMenu() {
+//     const [open, setOpen] = useState(0)
+//     const sessionUser = useSelector(state => state.session.user);
 
-    //         </div>
-    //     )
+//     return (
+//         <div>
 
-    // }
+//         </div>
+//     )
 
-    function Dropdownimg(props) {
-        const [open, setOpen] = useState(0)
-        return (
-            <div className="navitem">
-                <a className="icon-button" onClick={() => { setOpen(!open) }}>
-                    <i class="fa-solid fa-user"></i>
-                </a>
-                {open && <DropMenu />}
-            </div>
-        )
-    }
+// }
+
+function Dropdownimg(props) {
+    const [open, setOpen] = useState(0)
+    return (
+        <div className="navitem">
+            <a className="icon-button" onClick={() => { setOpen(!open) }}>
+                <i class="fa-solid fa-user"></i>
+            </a>
+            {open && <DropMenu />}
+        </div>
+    )
+}
 
 function DropMenu() {
     const [showModal, setShowModal] = useState(false)
