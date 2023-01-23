@@ -127,7 +127,7 @@ export const createASpotThunk = (newSpot) => async dispatch => {
 }
 
 
-export default function allSpotImagesReducer(state = { createSpot: {}, addImage: {}, allSpots: {}, singleSpot: {}, editedSpot: {} }, action) {
+export default function allSpotImagesReducer(state = { createSpot: {}, addImage: {}, allSpots: {}, singleSpot: {}, editedSpot: {}, bookings: {} }, action) {
 
     switch (action.type) {
 
