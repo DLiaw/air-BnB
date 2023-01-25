@@ -8,7 +8,7 @@ function CreateReviewModal({ oneSpot }) {
     const sessionUser = useSelector(state => state.session.user);
     const [showModal, setShowModal] = useState(false)
     if (!sessionUser) return null;
-    return sessionUser && sessionUser.id !== oneSpot.ownerId && (
+    return sessionUser && sessionUser.id !== oneSpot?.ownerId && (
         <div className='reviewbutton'>
             <h3 id='leaveanddeletereview' onClick={() => setShowModal(true)}>Leave a review</h3>
             {showModal && (

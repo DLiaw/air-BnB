@@ -5,18 +5,14 @@ import CreateReviewModal from '.';
 import aircover from '../images/aircover.png'
 import { deleteReviewThunk } from '../../store/reviewStore';
 import { getSpotByIdThunk } from '../../store/spotsStore';
-
+import { cleanUp } from '../../store/reviewStore';
 
 const SingleSpotReviews = ({ spotId }) => {
     const spotReview = useSelector(state => Object.values(state.review.allReviews))
-    const oneSpot = useSelector(state => state.spot.singleSpot)
     const spot = useSelector(state => state.spot.singleSpot)
     const sessionUser = useSelector(state => state.session.user);
-    const deleteReviewSession = useSelector(state => state.review.allReviews)
-    const reviewNormalize = Object.values(deleteReviewSession)
-    const reviewUser = reviewNormalize.find(e => e.userId == sessionUser?.id)
+    const reviewUser = spotReview.find(e => e.userId == sessionUser?.id)
     const dispatch = useDispatch()
-
 
     useEffect(() => {
         dispatch(getReviewsThunk(spotId))
@@ -26,9 +22,9 @@ const SingleSpotReviews = ({ spotId }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
         await dispatch(deleteReviewThunk(reviewUser.id))
         await dispatch(getSpotByIdThunk(spotId))
+        await dispatch(cleanUp())
         // history.push(`/spots/${spotId}`)
     }
     // if (!Object.values(spotReview).length) return null;
@@ -63,8 +59,8 @@ const SingleSpotReviews = ({ spotId }) => {
                         </div>
                     </div>
                 ))}
-                {(sessionUser?.id !== reviewUser?.userId) && (sessionUser?.id !== oneSpot.Owner.id) && < div className='reviewbutton' >
-                    <CreateReviewModal oneSpot={oneSpot} />
+                {(sessionUser?.id !== reviewUser?.userId) && (sessionUser?.id !== spot.Owner.id) && < div className='reviewbutton' >
+                    <CreateReviewModal spot={spot} />
                 </div>}
                 {(sessionUser?.id == reviewUser?.userId) && sessionUser && <div>
                     <h3 id='leaveanddeletereview' onClick={handleSubmit}>Delete Review</h3>
@@ -72,7 +68,6 @@ const SingleSpotReviews = ({ spotId }) => {
             </div>
         </div>
     )
-
 }
 
 export default SingleSpotReviews;

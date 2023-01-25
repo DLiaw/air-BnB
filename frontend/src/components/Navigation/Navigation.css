@@ -48,10 +48,10 @@
     text-decoration: underline;
     cursor: pointer;
     width: fit-content;
-    padding-top: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
 }
 
 #leaveanddeletereview:hover {
     background-color: rgb(234, 237, 240);
-    padding: 1px;
 }

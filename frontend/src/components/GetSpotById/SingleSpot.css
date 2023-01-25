@@ -37,10 +37,6 @@
     height: 49.5%;
 }
 
-/* .singleSpotSmalldiv div {
-
-} */
-
 #onespotdiv {
     border-color: solid 50px black;
 }
@@ -97,4 +93,5 @@
 .singlespot-wrapper {
     display: flex;
     justify-content: center;
+    margin-bottom: 100px;
 }

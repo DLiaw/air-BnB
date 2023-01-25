@@ -90,6 +90,8 @@ input[type="radio"] {
     flex-direction: column;
     position: relative;
     top: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .spotdetailsbottom {
@@ -97,6 +99,7 @@ input[type="radio"] {
     width: 650px;
     flex-direction: column;
     align-items: start;
+    margin-bottom: 100px;
 }
 
 .spottop {

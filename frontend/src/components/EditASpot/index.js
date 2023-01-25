@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { editSpotThunk } from "../../store/spotsStore";
+import { editSpotThunk, allSpotImagesThunk, deleteSpotThunk } from "../../store/spotsStore";
 import { useHistory } from "react-router-dom";
-import './editASpot.css';
-import { deleteSpotThunk } from "../../store/spotsStore"
 import { useParams } from 'react-router-dom'
 import { useSelector } from "react-redux";
-import { allSpotImagesThunk } from '../../store/spotsStore'
+import './editASpot.css';
 
 function EditASpot({ editSpot, image }) {
     const { spotId } = useParams()

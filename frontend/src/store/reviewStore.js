@@ -78,7 +78,7 @@ export default function createReviewReducer(state = { createReview: {}, allRevie
         }
 
         case GET_ALL_REVIEWS: {
-            const newState = { createReview: { ...state.createReview }, allReviews: { ...state.allReviews } }
+            const newState = { createReview: { ...state.createReview }, allReviews: {} }
             action.reviewSpotId.Reviews.forEach(review => {
                 newState.allReviews[review.id] = review
             })
