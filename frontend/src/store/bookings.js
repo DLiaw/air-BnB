@@ -1,13 +1,11 @@
-import { csrfFetch } from "./csrf";
-
-const ALL_BOOKINGS_BY_ID = 'bookings/allBookingsById'
+const ALL_BOOKINGS_BY_SPOT = 'bookings/allBookingsById'
 const ALL_BOOKINGS_BY_USER = 'bookings/allBookingsByUser'
 
 // bookings actions
 
 const allBookingsById = (bookings) => {
     return {
-        type: ALL_BOOKINGS_BY_ID,
+        type: ALL_BOOKINGS_BY_SPOT,
         bookings
     }
 }
@@ -21,7 +19,7 @@ const allBookingsByUser = (bookings) => {
 
 // bookings thunks
 
-export const allBookingsIdThunk = async (spotId) => {
+export const allBookingsIdThunk = (spotId) => async (dispatch) => {
     const response = await fetch(`/api/spot/${spotId}/bookings`)
     if (response.ok) {
         const data = await response.json()
@@ -29,7 +27,7 @@ export const allBookingsIdThunk = async (spotId) => {
     }
 }
 
-export const allBookingsUserThunk = async () => {
+export const allBookingsUserThunk = () => async (dispatch) => {
     const response = await fetch(`/api/bookings/current`)
     if (response.ok) {
         const data = await response.json()
@@ -45,7 +43,7 @@ const oldState = { spotBookings: {}, userBookings: {} }
 export default function bookingsReducer(state = oldState, action) {
     const newState = { ...oldState }
     switch (action.type) {
-        case ALL_BOOKINGS_BY_ID:
+        case ALL_BOOKINGS_BY_SPOT:
             if (action.bookings) {
                 action.bookings.forEach(e => {
                     newState.spotBookings[e.id] = e

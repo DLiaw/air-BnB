@@ -2,15 +2,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import SignupForm from "./components/SignupFormModal";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
-import AllSpotImage from "./components/AllSpotsImages";
-import SpotDetail from "./components/GetSpotById";
-import CreateASpot from "./components/CreateASpot";
-import AddImage from "./components/CreateASpot/AddImage";
-import EditASpot from "./components/EditASpot";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import AllSpotImage from "./components/LandingPage";
+import SpotDetail from "./components/SpotDetail";
+import CreateASpot from "./components/NewSpot";
+import EditASpot from "./components/UpdateSpot";
+
 
 
 

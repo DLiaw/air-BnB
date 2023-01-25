@@ -6,7 +6,7 @@ import ProfileButton from './ProfileButton';
 import logo from './logo3.png'
 import { Modal } from '../../context/Modal';
 import LoginForm from '../LoginFormModal/LoginForm';
-import SignupForm from '../SignupFormModal/SignupForm';
+import SignupForm from '../SignupModal/SignupForm';
 import './Navigation.css';
 
 

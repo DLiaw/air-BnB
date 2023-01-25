@@ -1,0 +1,70 @@
+.calendar-container {
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 120px;
+    width: 20vw;
+    height: fit-content;
+    padding: 20px;
+    margin: 50px 0px 0px 80px;
+    border: .3px solid rgb(222, 222, 222);
+    border-radius: 10px;
+    max-width: 400px;
+    row-gap: 3ch;
+    box-shadow: rgb(0 0 0 / 20%) 0px 6px 20px !important;
+}
+
+.cal-price-reviews {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px
+}
+
+.cal-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.cal-cal {
+    width: 90vw !important;
+    cursor: pointer;
+}
+
+.cal-all {
+    row-gap: 1ch;
+}
+
+.cal-charge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cal-reserve-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cal-reserve {
+    width: 90%;
+    height: 47px;
+    border-radius: 10px;
+    background-color: rgba(225, 23, 104, 0.98);
+    border: none;
+    cursor: pointer;
+}
+
+.cal-charge-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.price-night {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}

@@ -1,30 +1,28 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSpotByIdThunk } from '../../store/spotsStore'
 import SingleSpot from './SingleSpot';
 import { NavLink, useParams } from 'react-router-dom';
-import SingleSpotReviews from '../CreateReviewModalFolder/Review';
+import SingleSpotReviews from '../ReviewModal/Review';
 import { cleanUp } from '../../store/reviewStore';
+import Calendar from '../Calendar';
+import { allBookingsIdThunk } from '../../store/bookings'
 import './SingleSpot.css'
 
 const SpotDetail = () => {
     const sessionUser = useSelector(state => state.session.user);
     const oneSpot = useSelector(state => state.spot.singleSpot)
-    const oneReview = useSelector(state => state.review.createReview)
-    const deleteReviewSession = useSelector(state => state.review.allReviews)
-    const [isloaded, setLoaded] = useState(false)
     const { spotId } = useParams()
     const dispatch = useDispatch()
-    const reviewNormalize = Object.values(deleteReviewSession)
-    const reviewUser = reviewNormalize.find(e => e.userId == sessionUser?.id)
 
 
     useEffect(() => {
         dispatch(getSpotByIdThunk(spotId))
-            .then(() => { setLoaded(true) })
-
+        dispatch(allBookingsIdThunk(spotId))
         return () => dispatch(cleanUp())
-    }, [dispatch], spotId)
+    }, [dispatch, spotId])
+
+    const bookings = useSelector(state => Object.values(state.bookings.spotBookings))
 
     if (!Object.values(oneSpot).length) return null;
 
@@ -45,6 +43,9 @@ const SpotDetail = () => {
                 <div id="reviewcreatediv">
                     <div>
                         <SingleSpotReviews spotId={spotId} />
+                    </div>
+                    <div>
+                        <Calendar spot={oneSpot} bookings={bookings} />
                     </div>
                 </div>
             </div >

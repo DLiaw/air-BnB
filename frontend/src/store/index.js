@@ -3,11 +3,13 @@ import thunk from "redux-thunk";
 import sessionReducer from './session';
 import allSpotImagesReducer from './spotsStore';
 import createReviewReducer from "./reviewStore"
+import bookingsReducer from "./bookings"
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   spot: allSpotImagesReducer,
-  review: createReviewReducer
+  review: createReviewReducer,
+  bookings: bookingsReducer,
 
 });
 // reducers can be passed as props

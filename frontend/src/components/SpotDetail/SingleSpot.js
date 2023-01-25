@@ -53,27 +53,3 @@ const singleSpot = ({ oneSpot }) => {
 
 
 export default singleSpot;
-
-
-
-/*
-<img id='largeimg' alt={oneSpot.name} src={oneSpot.SpotImages[0].url}></img>
-                    </div>
-                    <div className="singleSpotSmalldiv">
-                        <div id='smallpic2'>
-                            <div>
-                                <img id='smallimg' alt={oneSpot.name} src={otherImages[1].url}></img>
-                            </div>
-                            <div>
-                                <img id='smallimg' alt={oneSpot.name} src={otherImages[2].url}></img>
-                            </div>
-
-
-
-                            <img id='smallimg' alt={oneSpot.name} src={otherImages[3].url}></img>
-
-                            <div>
-                                <img id='smallimg' alt={oneSpot.name} src={otherImages[4].url}></img>
-                            </div>
-                        </div>
-                        */
