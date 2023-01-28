@@ -9,6 +9,66 @@ const { Sequelize } = require("sequelize");
 const { raw } = require('express');
 const { Op } = require('sequelize')
 
+
+const validateCreate = [
+    check('name')
+        .exists({ checkFasly: true })
+        .isLength({ min: 1 })
+        .withMessage('Please provide a first name.'),
+    check('address')
+        .exists({ checkFasly: true })
+        .withMessage("Please provide an address."),
+    check('city')
+        .exists({ checkFasly: true })
+        .withMessage('Please provide a city.'),
+    check('state')
+        .exists({ checkFasly: true })
+        .withMessage('Please provide a state.'),
+    check('country')
+        .exists({ checkFasly: true })
+        .withMessage('Please provide a country'),
+    check('description')
+        .exists({ checkFasly: true })
+        .isLength({ min: 20, max: 250 })
+        .withMessage('Description must be between 20 and 250 characters.'),
+    check('price')
+        .exists({ checkFasly: true })
+        .isNumeric({ checkFasly: true })
+        .withMessage('Price must be a number.'),
+    handleValidationErrors
+]
+
+const validateUpdate = [
+    check('name')
+        .exists({ checkFasly: true })
+        .isLength({ min: 1 })
+        .withMessage('Please provide a first name.'),
+    check('address')
+        .exists({ checkFasly: true })
+        .withMessage("Please provide an address."),
+    check('city')
+        .exists({ checkFasly: true })
+        .withMessage('Please provide a city.'),
+    check('state')
+        .exists({ checkFasly: true })
+        .withMessage('Please provide a state.'),
+    check('country')
+        .exists({ checkFasly: true })
+        .withMessage('Please provide a country'),
+    check('description')
+        .exists({ checkFasly: true })
+        .isLength({ min: 20, max: 250 })
+        .withMessage('Description must be between 20 and 250 characters.'),
+    check('price')
+        .exists({ checkFasly: true })
+        .isNumeric({ checkFasly: true })
+        .withMessage('Price must be a number.'),
+    handleValidationErrors
+
+]
+
+// get all spots
+
 router.get('/', async (req, res, next) => {
     let { page, size } = req.query;
     if (!page || page <= 1 || isNaN(page)) page = 1;
@@ -66,6 +126,8 @@ router.get('/', async (req, res, next) => {
 })
 
 
+// get current spot
+
 router.get('/current', requireAuth, async (req, res, next) => {
     const currentId = req.user.id
 
@@ -104,6 +166,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
     res.json({ Spots })
 })
 
+// get spot by id
 
 router.get('/:spotId', async (req, res, next) => {
     const { spotId } = req.params
@@ -154,35 +217,7 @@ router.get('/:spotId', async (req, res, next) => {
 
 })
 
-const validateCreate = [
-    check('name')
-        .exists({ checkFasly: true })
-        .isLength({ min: 1 })
-        .withMessage('Please provide a first name.'),
-    check('address')
-        .exists({ checkFasly: true })
-        .withMessage("Please provide an address."),
-    check('city')
-        .exists({ checkFasly: true })
-        .withMessage('Please provide a city.'),
-    check('state')
-        .exists({ checkFasly: true })
-        .withMessage('Please provide a state.'),
-    check('country')
-        .exists({ checkFasly: true })
-        .withMessage('Please provide a country'),
-    check('description')
-        .exists({ checkFasly: true })
-        .isLength({ min: 20, max: 250 })
-        .withMessage('Description must be between 20 and 250 characters.'),
-    check('price')
-        .exists({ checkFasly: true })
-        .isNumeric({ checkFasly: true })
-        .withMessage('Price must be a number.'),
-    handleValidationErrors
-]
-
-
+// create a spot
 
 router.post('/', validateCreate, requireAuth, async (req, res, next) => {
     const ownerId = req.user.id
@@ -213,6 +248,7 @@ router.post('/', validateCreate, requireAuth, async (req, res, next) => {
         res.json(newSpot)
 })
 
+// create spot images
 
 router.post('/:spotId/images', requireAuth, async (req, res) => {
     const { url, preview } = req.body
@@ -240,34 +276,7 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
         res.json({ id: image.id, url, preview })
 })
 
-const validateUpdate = [
-    check('name')
-        .exists({ checkFasly: true })
-        .isLength({ min: 1 })
-        .withMessage('Please provide a first name.'),
-    check('address')
-        .exists({ checkFasly: true })
-        .withMessage("Please provide an address."),
-    check('city')
-        .exists({ checkFasly: true })
-        .withMessage('Please provide a city.'),
-    check('state')
-        .exists({ checkFasly: true })
-        .withMessage('Please provide a state.'),
-    check('country')
-        .exists({ checkFasly: true })
-        .withMessage('Please provide a country'),
-    check('description')
-        .exists({ checkFasly: true })
-        .isLength({ min: 20, max: 250 })
-        .withMessage('Description must be between 20 and 250 characters.'),
-    check('price')
-        .exists({ checkFasly: true })
-        .isNumeric({ checkFasly: true })
-        .withMessage('Price must be a number.'),
-    handleValidationErrors
-
-]
+// update a spot by id
 
 router.put('/:spotId', validateUpdate, requireAuth, async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body
@@ -309,6 +318,7 @@ router.put('/:spotId', validateUpdate, requireAuth, async (req, res) => {
     res.json(update)
 })
 
+// delete a spot by id
 
 router.delete('/:spotId', requireAuth, async (req, res) => {
     const spotId = req.params.spotId
@@ -332,6 +342,7 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
     })
 })
 
+// get all reviews by spot id
 
 router.get('/:spotId/reviews', async (req, res) => {
     const { spotId } = req.params
@@ -354,6 +365,7 @@ router.get('/:spotId/reviews', async (req, res) => {
     res.json({ Reviews })
 })
 
+// create a review with spot id
 
 router.post('/:spotId/reviews', requireAuth, async (req, res) => {
     const spotId = req.params.spotId
@@ -398,98 +410,50 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
 
 })
 
+// get all bookings by spot id
+
 router.get('/:spotId/bookings', requireAuth, async (req, res) => {
     const spotId = req.params.spotId
-    const ownerSpot = await Booking.findByPk(spotId)
-    if (!ownerSpot) {
-        res.json({
-            message: "Spot couldn't be found",
-            statusCode: 404
-        })
-    }
-    if (ownerSpot.userId !== req.user.id) {
-        const Bookings = await Booking.findAll({
-            attributes: ['spotId', 'startDate', 'endDate']
-        })
-        res.json({ Bookings })
-    }
-    if (ownerSpot.userId == req.user.id) {
-        const Bookings = await Booking.findAll({
-            include: [
-                { model: User, attributes: ['id', 'firstName', 'lastName'] }
-            ]
-        })
-        res.json({ Bookings })
-    }
+    const spotBookings = await Booking.findAll({
+        where: {
+            spotId: spotId
+        }
+    })
+    return res.json(spotBookings)
 })
 
+// create bookings with spot id
 
 router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     const spotId = req.params.spotId
-    const thisSpotId = await Spot.findByPk(spotId, {
-        include: [{ model: Booking }]
-    })
     const { startDate, endDate } = req.body
-    if (!thisSpotId) {
-        res.json({
+    const spot = await Spot.findByPk(spotId)
+    const spotBooking = await Booking.findAll({
+        where: {
+            spotId: spotId
+        }
+    })
+    if (!spot) {
+        return res.json({
             message: "Spot couldn't be found",
             statusCode: 404
         })
     }
     if (startDate >= endDate) {
-        res.json({
+        return res.json({
             message: "Validation error",
             statusCode: 400,
             errors: {
-                endDate: "endDate cannot be on or before startDate"
+                endDate: "End date cannot be on or before start date"
             }
         })
     }
-    const newThisSpotId = thisSpotId.toJSON()
 
-    newThisSpotId.Bookings.forEach(date => {
-        if (date.startDate >= startDate && date.endDate < endDate) {
-            res.json({
-                message: "Sorry, this spot is already booked for the specified dates",
-                statusCode: 403,
-                errors: {
-                    startDate: "Start date conflicts with an existing booking",
-                    endDate: "End date conflicts with an existing booking"
-                }
-            })
-        }
-        if (date.startDate < startDate && date.endDate < endDate && startDate <= date.endDate) {
-            res.json({
-                message: "Sorry, this spot is already booked for the specified dates",
-                statusCode: 403,
-                errors: {
-                    startDate: "Start date conflicts with an existing booking",
-                    endDate: "End date conflicts with an existing booking"
-                }
-            })
-        }
-        if (date.startDate > startDate && date.endDate > endDate && startDate >= date.endDate) {
-            res.json({
-                message: "Sorry, this spot is already booked for the specified dates",
-                statusCode: 403,
-                errors: {
-                    startDate: "Start date conflicts with an existing booking",
-                    endDate: "End date conflicts with an existing booking"
-                }
-            })
-        }
-        if (date.startDate < startDate && date.endDate > endDate) {
-            res.json({
-                message: "Sorry, this spot is already booked for the specified dates",
-                statusCode: 403,
-                errors: {
-                    startDate: "Start date conflicts with an existing booking",
-                    endDate: "End date conflicts with an existing booking"
-                }
-            })
-        }
-        if (date.startDate == startDate || date.endDate == startDate || date.startDate == endDate || date.endDate == endDate) {
-            res.json({
+    spotBooking.forEach(booking => {
+        // existing start (jan 2nd) >= newStartDate (jan 1st) && existing endDate (jan 3rd) <= newEndDate (jan 4th)
+        // cant have existing booking inside of new booking
+        if (booking.startDate >= startDate && booking.endDate <= endDate) {
+            return res.json({
                 message: "Sorry, this spot is already booked for the specified dates",
                 statusCode: 403,
                 errors: {
@@ -499,6 +463,58 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
             })
         }
 
+        // existing startDate (jan 1st) <= newStartDate (jan 2nd) && existing endDate  (jan 3rd) <= newEndDate (jan 4th)
+        //  && newStartDate (jan 2nd) <= existing endDate (jan 3rd)
+        // cant start in between and end after existing booking
+        if (booking.startDate <= startDate && startDate <= booking.endDate) {
+            return res.json({
+                message: "Sorry, this spot is already booked for the specified dates",
+                statusCode: 403,
+                errors: {
+                    startDate: "Start date conflicts with an existing booking",
+                    endDate: "End date conflicts with an existing booking"
+                }
+            })
+        }
+
+        // existing startDate (jan 2nd) >= newStartDate (jan 1st) && existing endDate (jan 4th) >= newEndDate (jan 3rd)
+        // && newStartDate (jan 1st) >= existing endDate (jan 4th)
+        // cant end in between and end after existing booking
+        if (booking.startDate <= endDate && endDate <= booking.endDate) {
+            return res.json({
+                message: "Sorry, this spot is already booked for the specified dates",
+                statusCode: 403,
+                errors: {
+                    startDate: "Start date conflicts with an existing booking",
+                    endDate: "End date conflicts with an existing booking"
+                }
+            })
+        }
+
+        // existing startDate (jan 1st) <= newStartDate (jan 2nd) && existing endDate (jan 4th) >= newEndDate (jan 3rd)
+        // cant book in between someone elses dates
+        if (booking.startDate <= startDate && booking.endDate >= endDate) {
+            return res.json({
+                message: "Sorry, this spot is already booked for the specified dates",
+                statusCode: 403,
+                errors: {
+                    startDate: "Start date conflicts with an existing booking",
+                    endDate: "End date conflicts with an existing booking"
+                }
+            })
+        }
+
+        // cant have any dates be the same
+        if (booking.startDate == startDate || booking.endDate == startDate || booking.startDate == endDate || booking.endDate == endDate) {
+            return res.json({
+                message: "Sorry, this spot is already booked for the specified dates",
+                statusCode: 403,
+                errors: {
+                    startDate: "Start date conflicts with an existing booking",
+                    endDate: "End date conflicts with an existing booking"
+                }
+            })
+        }
     })
 
     const bookedDates = await Booking.build({
@@ -508,18 +524,17 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
 
     await bookedDates.validate()
     await bookedDates.save()
-    res.json(bookedDates)
+    const newlyBooked = await Spot.findByPk(spotId)
+    const previewImage = await SpotImage.findAll({
+        where: { spotId: spotId, preview: true },
+        attributes: ['url']
+    })
+
+    bookedDates.Spot = newlyBooked
+    bookedDates.Spot.dataValues.previewImage = previewImage[0].toJSON().url
+    console.log(bookedDates, 'FROM BACK ENDDDDDDDDDDDDDD')
+    return res.json(bookedDates)
 
 })
 
-
-// router.use((err, req, res, next) => {
-
-//     let statusCode = err.statusCode || 500
-//     res.status(statusCode)
-//     res.json({
-//         message: err.message,
-//         statusCode: res.statusCode
-//     })
-// })
 module.exports = router;

@@ -1,47 +1,38 @@
 // backend/routes/api/users.js
 const express = require('express')
-const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User, Booking, Review, ReviewImage, Spot, SpotImage } = require('../../db/models');
-const { check } = require('express-validator');
-const { handleValidationErrors } = require('../../utils/validation');
+const { requireAuth } = require('../../utils/auth');
+const { Booking, Spot, SpotImage } = require('../../db/models');
 const router = express.Router();
-const { Sequelize } = require("sequelize");
-const { raw } = require('express');
-const { Op } = require('sequelize')
-
 
 router.get('/current', requireAuth, async (req, res) => {
-    const currentId = req.user.id
-    let books = await Booking.findAll({
-        where: { userId: currentId },
-        include: [
-            {
-                model: Spot, attributes: { exclude: ['createdAt', 'updatedAt', 'description'] },
-                include: [{ model: SpotImage }]
-            },
-        ],
+
+    let result = []
+
+    const userId = req.user.id
+
+    const bookings = await Booking.findAll({
+        where: { userId: userId }
     })
 
-    let Bookings = []
-    books.forEach(asdf => {
-        Bookings.push(asdf.toJSON())
-    })
-    const one = await Booking.findByPk(currentId)
-    const two = await Spot.findByPk(one.spotId)
-    const three = await SpotImage.findByPk(two.id)
+    for (let i = 0; i < bookings.length; i++) {
 
+        let booking = bookings[i].toJSON()
 
-    if (three.dataValues.preview == true) {
-        Bookings.forEach(check => {
-            check.Spot.SpotImages.forEach(final => {
-                check.Spot.previewImage = final.url
-                delete check.Spot.SpotImages
-            })
+        let spotId = bookings[i].toJSON().spotId
+
+        let spot = await Spot.findByPk(spotId)
+
+        const previewImage = await SpotImage.findAll({
+            where: { spotId: spot.id, preview: true },
+            attributes: ['url']
         })
+        spot.dataValues.previewImage = previewImage[0].toJSON().url
+        booking.Spot = spot
+        result.push(booking)
     }
 
+    return res.json(result)
 
-    res.json({ Bookings })
 })
 
 router.put('/:bookingId', requireAuth, async (req, res) => {
