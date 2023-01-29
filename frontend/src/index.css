@@ -5,3 +5,13 @@ body {
     padding: 0;
     width: 100vw;
 }
+
+@font-face {
+    font-family: "Light";
+    src: local("Poppins-Thin"),
+        url("./Fonts/Poppins-Light.ttf") format("truetype");
+}
+
+* {
+    font-family: Light;
+}

@@ -7,17 +7,6 @@ import LoginForm from '../LoginFormModal/LoginForm';
 import SignupForm from '../SignupFormModal/SignupForm';
 import { useSelector } from 'react-redux';
 
-// function DropdownMenu() {
-//     const [open, setOpen] = useState(0)
-//     const sessionUser = useSelector(state => state.session.user);
-
-//     return (
-//         <div>
-
-//         </div>
-//     )
-
-// }
 
 function Dropdownimg(props) {
     const [open, setOpen] = useState(0)
@@ -61,9 +50,6 @@ function DropMenu() {
             </div>
         </div>
     )
-}
-function ProfileDropdown(props) {
-
 }
 
 export default Dropdownimg;

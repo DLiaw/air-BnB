@@ -12,19 +12,13 @@ ul {
     list-style: none;
     margin: 0;
     padding: 0;
-    font-family: 'Big Shoulders Display', cursive;
-    font-family: 'Fraunces', serif;
-    font-family: 'Lexend Deca', sans-serif;
-    font-family: 'Montserrat', sans-serif;
+
 }
 
 a {
     color: var(--text-color);
     text-decoration: none;
-    font-family: 'Big Shoulders Display', cursive;
-    font-family: 'Fraunces', serif;
-    font-family: 'Lexend Deca', sans-serif;
-    font-family: 'Montserrat', sans-serif;
+
 }
 
 /* .navitem {
@@ -68,10 +62,7 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    font-family: 'Big Shoulders Display', cursive;
-    font-family: 'Fraunces', serif;
-    font-family: 'Lexend Deca', sans-serif;
-    font-family: 'Montserrat', sans-serif;
+
 }
 
 .menu-item {
@@ -81,10 +72,6 @@ a {
     border-radius: var(--border-radius);
     transition: background var(--speed);
     padding: 0.5rem;
-    font-family: 'Big Shoulders Display', cursive;
-    font-family: 'Fraunces', serif;
-    font-family: 'Lexend Deca', sans-serif;
-    font-family: 'Montserrat', sans-serif;
 }
 
 .menu-item:hover {
@@ -108,10 +95,6 @@ a {
     flex-direction: column;
     justify-content: space-between;
     background-color: rgb(253, 253, 253);
-    font-family: 'Big Shoulders Display', cursive;
-    font-family: 'Fraunces', serif;
-    font-family: 'Lexend Deca', sans-serif;
-    font-family: 'Montserrat', sans-serif;
 
 }
 
@@ -173,10 +156,6 @@ a {
     border: none;
     outline: none;
     cursor: pointer;
-    font-family: 'Big Shoulders Display', cursive;
-    font-family: 'Fraunces', serif;
-    font-family: 'Lexend Deca', sans-serif;
-    font-family: 'Montserrat', sans-serif;
     padding-right: 10px;
 }
 

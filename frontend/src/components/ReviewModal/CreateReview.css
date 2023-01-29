@@ -29,10 +29,6 @@ input[type="radio"] {
     outline: none;
     cursor: pointer;
     height: 40px;
-    font-family: 'Big Shoulders Display', cursive;
-    font-family: 'Fraunces', serif;
-    font-family: 'Lexend Deca', sans-serif;
-    font-family: 'Montserrat', sans-serif;
 }
 
 #reviewformdiv {
@@ -43,11 +39,6 @@ input[type="radio"] {
     margin: 8% auto 0;
     text-align: center;
     border-radius: 20px;
-    font-family: 'Big Shoulders Display', cursive;
-    font-family: 'Fraunces', serif;
-    font-family: 'Lexend Deca', sans-serif;
-    font-family: 'Montserrat', sans-serif;
-
 }
 
 #reviewbutton {
@@ -67,10 +58,6 @@ input[type="radio"] {
     border-radius: 20px;
     border: 1px solid #999;
     margin: 26px;
-    font-family: 'Big Shoulders Display', cursive;
-    font-family: 'Fraunces', serif;
-    font-family: 'Lexend Deca', sans-serif;
-    font-family: 'Montserrat', sans-serif;
 }
 
 
@@ -100,7 +87,7 @@ input[type="radio"] {
     flex-direction: column;
     align-items: start;
     padding-top: 40px;
-    margin-bottom: 100px;
+    margin-bottom: 40px;
 }
 
 .spottop {

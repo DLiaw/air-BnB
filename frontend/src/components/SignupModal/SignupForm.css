@@ -1,12 +1,4 @@
 .signupform {
-    /* display: flex;
-    flex-direction: column;
-    flex: center;
-    width: 350px;
-    height: 400px;
-    border-radius: 5%;
-    padding-top: 40px;
-    text-align: center; */
     width: 350px;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
     background: #fff;
@@ -14,27 +6,15 @@
     margin: 8% auto 0;
     text-align: center;
     border-radius: 20px;
-    font-family: 'Big Shoulders Display', cursive;
-    font-family: 'Fraunces', serif;
-    font-family: 'Lexend Deca', sans-serif;
-    font-family: 'Montserrat', sans-serif;
 }
 
 #modal-content {
     border-radius: 20px;
-    font-family: 'Big Shoulders Display', cursive;
-    font-family: 'Fraunces', serif;
-    font-family: 'Lexend Deca', sans-serif;
-    font-family: 'Montserrat', sans-serif;
 }
 
 #signupspan {
     border-bottom: 5px;
     border-color: #999;
-    font-family: 'Big Shoulders Display', cursive;
-    font-family: 'Fraunces', serif;
-    font-family: 'Lexend Deca', sans-serif;
-    font-family: 'Montserrat', sans-serif;
 }
 
 #signupinput {
@@ -45,10 +25,6 @@
     width: 80%;
     border: 1px solid #999;
     outline: none;
-    font-family: 'Big Shoulders Display', cursive;
-    font-family: 'Fraunces', serif;
-    font-family: 'Lexend Deca', sans-serif;
-    font-family: 'Montserrat', sans-serif;
 }
 
 input::placeholder {

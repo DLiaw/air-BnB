@@ -8,6 +8,7 @@ import { cleanUp } from '../../store/reviewStore';
 import Calendar from '../Calendar';
 import { allBookingsIdThunk } from '../../store/bookings'
 import './SingleSpot.css'
+import SpotGoogleMap from '../SpotDetailMap';
 
 const SpotDetail = () => {
     const sessionUser = useSelector(state => state.session.user);
@@ -47,6 +48,10 @@ const SpotDetail = () => {
                     <div>
                         <Calendar spot={oneSpot} bookings={bookings} />
                     </div>
+                </div>
+                <div className='spot-map'>
+                    <h1>Where you'll be...</h1>
+                    <SpotGoogleMap oneSpot={oneSpot} />
                 </div>
             </div >
         </div >

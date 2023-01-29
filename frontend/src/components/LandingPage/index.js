@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { allSpotImagesThunk } from '../../store/spotsStore'
 import SingleSpotCard from './SingleSpotCard';
 import './AllSpots.css'
-import { NavLink } from 'react-router-dom';
-
 
 const AllSpotImage = () => {
 

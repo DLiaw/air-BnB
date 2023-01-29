@@ -1,17 +1,20 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams, useHistory } from 'react-router-dom'
+import { DateRangePicker } from 'react-dates';
+import { newBookingThunk, allBookingsUserThunk } from '../../store/bookings';
 import moment from "moment";
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
-import { DateRangePicker } from 'react-dates';
-import { Fragment } from 'react';
 import "./calendar.css"
 
 
 const Calendar = ({ bookings, spot }) => {
-
     const dispatch = useDispatch()
+    const history = useHistory()
+    const user = useSelector(state => state.session.user)
+    const { spotId } = useParams()
     const [startDate, setStartDate] = useState()
     const [endDate, setEndDate] = useState()
     const [focusedInput, setFocusedInput] = useState(null)
@@ -26,6 +29,26 @@ const Calendar = ({ bookings, spot }) => {
         blockedDates.push(bookedDates)
     }, [dispatch, bookedDates])
 
+    useEffect(() => {
+        const endInput = document.getElementById('endDateId')
+        if (!startDate) {
+            endInput.disabled = true
+            setEndDate()
+            setStartDate()
+        }
+    }, [startDate])
+
+    const handleSubmitBookings = async (e) => {
+        e.preventDefault()
+        const data = {
+            startDate, endDate, spotId,
+            userId: user.id
+        }
+        await dispatch(newBookingThunk(data))
+        await dispatch(allBookingsUserThunk(user.id))
+        history.push(`/${user.id}/bookings`)
+    }
+
     const handleDateChanges = ({ startDate, endDate }) => {
         setStartDate(startDate)
         setEndDate(endDate)
@@ -37,39 +60,37 @@ const Calendar = ({ bookings, spot }) => {
     }
 
     const existingBookings = (bookings) => {
-
         bookings.forEach(booking => {
             const { startDate, endDate } = booking
-            let date = new Date(startDate)
-            let dateEnd = new Date(endDate)
-            while (date < dateEnd) {
-                bookedDates.push(moment(new Date(date + 1)).format('YYYY-MM-DD'))
-                date.setDate(date.getDate() + 1)
+            let date = moment(startDate)
+            let dateEnd = moment(endDate)
+            while (date <= dateEnd) {
+                bookedDates.push(moment(new Date(date)).format('YYYY-MM-DD'))
+                date.add(1, 'days')
             }
         })
     }
 
     const checkGapDays = (day) => {
         if (day > moment()) {
-            const blockedDates = new Set([...bookedDates])
-            return blockedDates.has(moment(day).add(1, 'days').format('YYYY-MM-DD'))
+            const gapDays = []
+            bookings.forEach(booking => gapDays.push(moment(booking.startDate).subtract(1, "days").format('YYYY-MM-DD')))
+            return gapDays.find(gapDay => gapDay == day.format('YYYY-MM-DD'))
         }
+
     }
 
     const validatedDates = (day) => {
-
         if (!startDate) {
             return moment(startDate).diff(day, 'days') > 0
         }
         if (startDate) {
-
             const blockedDates = [...bookedDates]
             let earliestBlockedDate = blockedDates[0]
-
-            for (let i = 0; i < blockedDates.length; i++) {
-                if (moment(blockedDates[i]) > moment(startDate)) {
+            for (let i = 1; i < blockedDates.length; i++) {
+                if (moment(blockedDates[i]) > moment(startDate) &&
+                    moment(blockedDates[i]).diff(day, 'days') < moment(earliestBlockedDate).diff(day, 'days')) {
                     earliestBlockedDate = blockedDates[i]
-                    break
                 }
             }
             if (moment(startDate).diff(earliestBlockedDate, 'days') > 0) {
@@ -79,31 +100,37 @@ const Calendar = ({ bookings, spot }) => {
         }
     }
 
+    const handleClear = (e) => {
+        e.preventDefault()
+        setStartDate()
+        setEndDate()
+        document.getElementById('startDateId').focus()
+    }
+
+    const handleClose = (e) => {
+        e.preventDefault()
+        setFocusedInput(null)
+    }
 
     const calInfo = (e) => {
         return (
-            <Fragment>
-
-                <div className="calendar-info-top">
-                    <span>Select Dates</span>
-                    <span> Add your travel dates for exact pricing</span>
-                </div>
-                <div className="calendar-info-bottom">
-                    <button>Clear dates</button>
-                    <button>Close</button>
-                </div>
-
-            </Fragment>
+            <div className="calendar-info-bottom">
+                <button onClick={handleClear} className='clearDateBTN' >Clear dates</button>
+                <button onClick={handleClose} className='closeBTN'>Close</button>
+            </div>
         )
     }
 
-
+    const handleButtonClick = (e) => {
+        e.preventDefault()
+        document.getElementById('startDateId').focus()
+    }
 
     return (
         <div className="calendar-container">
             <div className='cal-price-reviews'>
                 <div>
-                    <span style={{ fontSize: '22px' }}>${spot.price}</span>  &nbsp;<span>night</span>
+                    <span style={{ fontSize: '25px' }}>${spot.price}</span>  &nbsp;<span>night</span>
                 </div>
                 <div>
                     ⭐{spot.avgStarRating} • {spot.numReviews}&nbsp;review(s)
@@ -111,7 +138,6 @@ const Calendar = ({ bookings, spot }) => {
             </div>
             <div className='cal-input'>
                 <DateRangePicker
-                    className='cal-cal'
                     startDate={startDate} // momentPropTypes.momentObj or null,
                     startDateId="startDateId" // PropTypes.string.isRequired,
                     endDate={endDate} // momentPropTypes.momentObj or null,
@@ -124,7 +150,7 @@ const Calendar = ({ bookings, spot }) => {
                     minimumNights={1}
                     minDate={moment(new Date())}
                     isDayBlocked={blockDates}
-                    startDatePlaceholderText="Check-in"
+                    startDatePlaceholderText={`${'add date'}`}
                     endDatePlaceholderText="Checkout"
                     hideKeyboardShortcutsPanel={true}
                     isDayHighlighted={checkGapDays}
@@ -134,13 +160,12 @@ const Calendar = ({ bookings, spot }) => {
 
                 />
             </div>
-
             {startDate == null && endDate == null && <div className='cal-reserve-div'>
-                <button className='cal-reserve' style={{ color: 'white' }}>Check availability</button>
+                <button onClick={handleButtonClick} className='cal-reserve' style={{ color: 'white', marginBottom: ' 10px' }}>Check availability</button>
             </div>}
 
             {startDate && endDate && <div className='cal-reserve-div'>
-                <button className='cal-reserve' style={{ color: 'white' }}>Reserve</button>
+                <button onClick={handleSubmitBookings} className='cal-reserve' style={{ color: 'white' }}>Reserve</button>
             </div>}
 
             {startDate && endDate && <div className='cal-charge'>
@@ -149,7 +174,6 @@ const Calendar = ({ bookings, spot }) => {
 
             {startDate && endDate && <div className='cal-all'>
                 <div className='cal-charge-info'>
-                    {console.log(endDate, 'FROM FRONT ENDDDDDDDDDDDDDDDDDDDDDD')}
                     <p>${spot.price} x {moment(endDate).diff(moment(startDate), 'days')} nights </p><p>${spot.price * moment(endDate).diff(moment(startDate), 'days')}</p>
                 </div>
                 <div className='cal-charge-info'>

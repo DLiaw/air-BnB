@@ -1,21 +1,17 @@
 .navmaindiv {
     display: flex;
     justify-content: space-between;
+    position: fixed;
     border-bottom: solid 1px rgb(225, 223, 223);
     align-items: center;
     height: 80px;
     padding: 0 8rem 0 8rem;
-    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     box-sizing: border-box;
     z-index: 1;
     background-color: white;
-    font-family: 'Big Shoulders Display', cursive;
-    font-family: 'Fraunces', serif;
-    font-family: 'Lexend Deca', sans-serif;
-    font-family: 'Montserrat', sans-serif;
 }
 
 #navLogo {
@@ -32,11 +28,6 @@
     margin: 20px;
     position: relative;
     top: 25px;
-    font-family: 'Big Shoulders Display', cursive;
-    font-family: 'Fraunces', serif;
-    font-family: 'Lexend Deca', sans-serif;
-    font-family: 'Montserrat', sans-serif;
-
 }
 
 #loginmessage {

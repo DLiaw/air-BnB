@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: baseline;
     box-sizing: border-box;
+    width: 100%;
 }
 
 #singlespotmainpic {
@@ -24,10 +25,6 @@
 #singleSpotnamediv {
     display: flex;
     align-items: flex-end;
-    font-family: 'Big Shoulders Display', cursive;
-    font-family: 'Fraunces', serif;
-    font-family: 'Lexend Deca', sans-serif;
-    font-family: 'Montserrat', sans-serif;
 }
 
 #foursmallpics {
@@ -54,32 +51,18 @@
     flex-wrap: wrap;
     height: 100%;
     gap: 1%;
-    font-family: 'Big Shoulders Display', cursive;
-    font-family: 'Fraunces', serif;
-    font-family: 'Lexend Deca', sans-serif;
-    font-family: 'Montserrat', sans-serif;
 }
 
 #namereviewdiv {
     display: flex;
     flex-direction: row;
     padding: 1rem 0;
-    font-family: 'Big Shoulders Display', cursive;
-    font-family: 'Fraunces', serif;
-    font-family: 'Lexend Deca', sans-serif;
-    font-family: 'Montserrat', sans-serif;
-
 }
 
 #reviewcreatediv {
     width: 50%;
     display: flex;
-
     justify-content: space-between;
-    font-family: 'Big Shoulders Display', cursive;
-    font-family: 'Fraunces', serif;
-    font-family: 'Lexend Deca', sans-serif;
-    font-family: 'Montserrat', sans-serif;
 }
 
 #onespotmaindiv {
@@ -88,10 +71,20 @@
     width: 1200px;
     height: 100vh;
     box-sizing: border-box;
+    padding-bottom: 4.5%;
+    height: 100%;
+
 }
 
 .singlespot-wrapper {
     display: flex;
     justify-content: center;
-    margin-bottom: 100px;
+    height: 100%;
+}
+
+.spot-map {
+    width: 1200px;
+    height: 450px;
+    padding: 0;
+    border-top: 1px solid rgb(183, 183, 183);
 }

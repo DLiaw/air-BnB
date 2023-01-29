@@ -10,11 +10,6 @@
     flex-direction: column;
     padding-left: 58px;
     margin-bottom: 80px;
-    font-family: 'Big Shoulders Display', cursive;
-    font-family: 'Fraunces', serif;
-    font-family: 'Lexend Deca', sans-serif;
-    font-family: 'Montserrat', sans-serif;
-
 }
 
 .createspot:hover {
@@ -34,12 +29,6 @@
     background-image: url(https://a0.muscache.com/im/pictures/88d46041-60a0-4064-ae28-03423174766c.jpg?im_w=960);
     background-size: cover;
     animation: change 50s infinite ease-in-out;
-    font-family: 'Big Shoulders Display', cursive;
-    font-family: 'Fraunces', serif;
-    font-family: 'Lexend Deca', sans-serif;
-    font-family: 'Montserrat', sans-serif;
-
-
 }
 
 #spotform {
@@ -49,10 +38,6 @@
     width: 80%;
     border: 1px solid #999;
     outline: none;
-    font-family: 'Big Shoulders Display', cursive;
-    font-family: 'Fraunces', serif;
-    font-family: 'Lexend Deca', sans-serif;
-    font-family: 'Montserrat', sans-serif;
 }
 
 #spotdescription {
@@ -66,10 +51,6 @@
     text-align: left;
     align-items: flex-start;
     vertical-align: top;
-    font-family: 'Big Shoulders Display', cursive;
-    font-family: 'Fraunces', serif;
-    font-family: 'Lexend Deca', sans-serif;
-    font-family: 'Montserrat', sans-serif;
     overflow: hidden;
 }
 
@@ -81,11 +62,6 @@
     width: 500px;
     height: 300px;
     text-align: bottom;
-    font-family: 'Big Shoulders Display', cursive;
-    font-family: 'Fraunces', serif;
-    font-family: 'Lexend Deca', sans-serif;
-    font-family: 'Montserrat', sans-serif;
-
 }
 
 #spotbutton {
@@ -105,10 +81,6 @@
     border-radius: 20px;
     border: 1px solid #999;
     /* margin: 26px; */
-    font-family: 'Big Shoulders Display', cursive;
-    font-family: 'Fraunces', serif;
-    font-family: 'Lexend Deca', sans-serif;
-    font-family: 'Montserrat', sans-serif;
 }
 
 @keyframes change {
