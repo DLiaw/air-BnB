@@ -147,8 +147,8 @@ const spots = [
     city: 'Seoul',
     state: 'WA',
     country: 'Korea',
-    lat: 37.59019,
-    lng: 126.97542,
+    lat: 37.56815,
+    lng: 127.00495,
     name: 'Seoul Crib',
     description: 'Vista Estate On Lake Heaven Lake',
     price: 2650.00
