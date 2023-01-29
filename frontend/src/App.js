@@ -8,7 +8,7 @@ import AllSpotImage from "./components/LandingPage";
 import SpotDetail from "./components/SpotDetail";
 import CreateASpot from "./components/NewSpot";
 import EditASpot from "./components/UpdateSpot";
-import UserBookings from './components/UserBookings'
+import UserBookings from "./components/UserBookings"
 
 
 
