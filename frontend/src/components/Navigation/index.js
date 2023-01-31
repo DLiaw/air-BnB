@@ -22,6 +22,12 @@ function Navigation({ isLoaded }) {
                     <img id='navLogo' src={logo} alt='Home' />
                 </NavLink>
             </div>
+            <div className='nav-search'>
+                <h5 className='nav-search-text'>Anywhere</h5>
+                <h5 className='nav-search-text-one'>Any week</h5>
+                <h5 className='nav-search-text-two'>Add guests</h5>
+                <div className='nav-search-icon'><i class="fa-solid fa-magnifying-glass" /></div>
+            </div>
             <div className='becomehostandicon'>
                 < div id='navloginsignup'>
                     {sessionUser &&

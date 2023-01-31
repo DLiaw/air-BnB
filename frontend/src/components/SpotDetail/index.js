@@ -18,8 +18,8 @@ const SpotDetail = () => {
 
 
     useEffect(() => {
+        if (sessionUser) dispatch(allBookingsIdThunk(spotId))
         dispatch(getSpotByIdThunk(spotId))
-        dispatch(allBookingsIdThunk(spotId))
         return () => dispatch(cleanUp())
     }, [dispatch, spotId])
 

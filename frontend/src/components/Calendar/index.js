@@ -25,6 +25,7 @@ const Calendar = ({ bookings, spot }) => {
         existingBookings(bookings)
     }, [dispatch, bookings])
 
+
     useEffect(() => {
         blockedDates.push(bookedDates)
     }, [dispatch, bookedDates])
@@ -132,9 +133,16 @@ const Calendar = ({ bookings, spot }) => {
                 <div>
                     <span style={{ fontSize: '25px' }}>${spot.price}</span>  &nbsp;<span>night</span>
                 </div>
-                <div>
-                    ⭐{spot.avgStarRating} • {spot.numReviews}&nbsp;review(s)
-                </div>
+                {/* <div>
+                    ⭐{spot.avgStarRating} • {spot.numReviews}&nbsp;review
+                </div> */}
+
+                {
+                    spot.numReviews > 0 ?
+                        <span>{`⭐ ${spot.avgStarRating ? Number(spot.avgStarRating).toFixed(0) : "New"}`} · {spot.numReviews} {`${spot.numReviews === 1 ? "review" : "reviews"}`}</span>
+                        :
+                        <span>New</span>
+                }
             </div>
             <div className='cal-input'>
                 <DateRangePicker

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { deleteBookingThunk } from "../../store/bookings";
+import { deleteBookingThunk, allBookingsIdThunk } from "../../store/bookings";
 
 const Booking = ({ booking }) => {
     const [open, setOpen] = useState(false)
@@ -12,9 +12,11 @@ const Booking = ({ booking }) => {
         if (!booking.Spot) setLoad(false)
         if (booking.Spot) setLoad(true)
     }, [booking.Spot])
+
     const handleDelete = async (e) => {
         e.preventDefault()
         dispatch(deleteBookingThunk(booking))
+        dispatch(allBookingsIdThunk(booking.id))
         setOpen(false)
     }
 

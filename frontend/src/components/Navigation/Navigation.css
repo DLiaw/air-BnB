@@ -33,6 +33,8 @@
 #loginmessage {
     padding-top: 5px;
     padding-bottom: 5px;
+    font-size: 15px;
+    padding-left: 10px;
 }
 
 #leaveanddeletereview {
@@ -45,4 +47,51 @@
 
 #leaveanddeletereview:hover {
     background-color: rgb(234, 237, 240);
+}
+
+.nav-search {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 14%;
+    border: .5px solid rgb(224, 224, 224);
+    border-radius: 2em;
+    height: 55%;
+    padding: 0 10px 0 10px;
+    cursor: not-allowed;
+    min-width: 300px;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
+}
+
+.nav-search-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: rgba(225, 23, 104, 0.98);
+    /* background-image: radial-gradient(circle at center center, #ff385c 0, #e61e4d 0, #e31c5f 40%, #d70466 57.5%, #bd1e59 75%, #bd1e59 100%); */
+    height: 70%;
+    width: 11%;
+    border: none;
+    padding: none;
+    border-radius: 50%;
+}
+
+.nav-search-text {
+    color: rgb(101, 101, 101);
+    border-right: .5px solid rgb(166, 166, 166);
+    padding-right: 14px;
+    padding-left: 5px;
+}
+
+.nav-search-text-one {
+    color: rgb(101, 101, 101);
+    border-right: .5px solid rgb(166, 166, 166);
+    padding-right: 14px;
+}
+
+.nav-search-text-two {
+    color: rgb(166, 166, 166);
 }
