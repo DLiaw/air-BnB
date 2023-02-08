@@ -54,43 +54,4 @@ function Navigation({ isLoaded }) {
 
 }
 
-function DropdownItem(props) {
-    return (
-        <li className="dropdownItem">
-            <img src={props.img}></img>
-            <a>{props.text}</a>
-        </li>
-    )
-}
-
 export default Navigation;
-
-
-
-// (
-//     <div className='navmaindiv'>
-//         <div id='navhomebutton'>
-//             <NavLink exact to="/">
-//                 <img id='navLogo' src={logo} alt='Home'></img>
-//             </NavLink>
-//         </div>
-//         < div id='navloginsignup'>
-//             {sessionUser &&
-//                 <div>
-//                     <NavLink to='/spots/new'>Become a host</NavLink>
-//                 </div>}
-//             {isLoaded &&
-//                 <ProfileButton
-//                     user={sessionUser}
-//                     setLogin={setLogin}
-//                     setShowModal={setShowModal}
-//                 />}
-//             {showModal && <Modal onClose={() => setShowModal(false)}>
-//                 {login ?
-//                     <LoginForm setShowModal={setShowModal} />
-//                     :
-//                     <SignupForm setShowModal={setShowModal} />}
-//             </Modal>}
-//         </div>
-//     </div >
-// );

@@ -26,7 +26,7 @@ input[type="radio"] {
     width: 80%;
     border: 1px solid #999;
     outline: none;
-    outline: none;
+    resize: none;
     cursor: pointer;
     height: 40px;
 }

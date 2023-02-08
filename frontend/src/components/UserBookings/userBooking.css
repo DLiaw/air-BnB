@@ -54,6 +54,7 @@
 
 .single-name {
     display: flex;
+    position: relative;
     flex-direction: row;
     justify-content: space-between;
     padding-top: 5px;
@@ -71,8 +72,13 @@
 .booking-delete {
     display: flex;
     position: absolute;
-    margin-left: 370px;
-    margin-top: 230px;
+    width: 17vw;
+    height: 26vh;
+    align-items: flex-end;
+    justify-content: end;
+    max-height: 26vh;
+    /* margin-left: 370px;
+    margin-top: 230px; */
 }
 
 .deleteBtn {

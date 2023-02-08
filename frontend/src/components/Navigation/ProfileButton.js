@@ -35,8 +35,7 @@ function ProfileButton({ user, setLogin, setShowModal }) {
         dispatch(sessionActions.logout());
         history.push('/')
     };
-    // const username = user.username
-    // const email = user.email
+
     return (
         <>
             <button className="menu-trigger" onClick={openMenu}>

@@ -21,6 +21,7 @@ function CreateASpot({ newSpot }) {
 
 
     useEffect(() => {
+        const format = ['.jpeg', '.png', '.jpg', '.gif']
         const validationErrors = []
         if (name === ' ') validationErrors.push('Name is required.')
         if (address === ' ') validationErrors.push('Address is required.')
@@ -35,6 +36,7 @@ function CreateASpot({ newSpot }) {
         if (country.length > 30) validationErrors.push('Country must be under 30 characters.')
         if (description.length > 200) validationErrors.push('Address must be under 200 characters.')
         if (price !== '' && price < 1) validationErrors.push('Price must be at least $1.')
+        if (!format.includes(url.slice(-4))) validationErrors.push("Images must be in jpeg, png, jpg, or gif format.")
 
         setErrors(validationErrors)
     }, [name, address, city, state, country, description, price, url])

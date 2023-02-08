@@ -7,7 +7,9 @@ const SingleSpotCard = ({ spot }) => {
         <div className='spotsSeconddiv' >
             <div id='imageNav'>
                 <NavLink to={`/spots/${spot.id}`}>
-                    <img id='spotimage' alt={spot.name} src={spot.previewImage}></img>
+                    <img id='spotimage' alt={spot.name} src={spot.previewImage}
+                        onError={e => { e.currentTarget.src = 'https://www.drupal.org/files/project-images/broken-image.jpg' }}
+                    ></img>
                 </NavLink>
             </div>
             <div className="priceAndStardiv">

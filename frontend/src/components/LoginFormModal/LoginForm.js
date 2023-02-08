@@ -4,8 +4,6 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import './LoginForm.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 
 function LoginForm({ setShowModal }) {
     const dispatch = useDispatch();
@@ -36,11 +34,11 @@ function LoginForm({ setShowModal }) {
             <i id="signupxmark" className="fa-solid fa-xmark" onClick={() => setShowModal(false)} />
             <span id="useremailspan">Login</span>
             <form onSubmit={handleSubmit}>
-                <ul>
+                {/* <ul>
                     {errors.map((error, idx) => (
                         <li key={idx}>{error}</li>
                     ))}
-                </ul>
+                </ul> */}
                 <label>
 
                     <input id="signupinput" placeholder="Username or Email"
@@ -50,6 +48,9 @@ function LoginForm({ setShowModal }) {
                         required
                     />
                 </label>
+                {errors.credentail && (
+                    <div>{errors.credentail}</div>
+                )}
                 <label>
 
                     <input id="signupinput" placeholder="Password"
@@ -59,6 +60,9 @@ function LoginForm({ setShowModal }) {
                         required
                     />
                 </label>
+                {errors.password && (
+                    <div>{errors.password}</div>
+                )}
                 <div className="longinsignupdiv">
                     <button id="loginsignupbutton" type="submit">Login</button>
                     <button id="loginsignupbutton" type="submit" onClick={demo}>Demo-User</button>

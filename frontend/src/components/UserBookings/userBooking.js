@@ -13,7 +13,7 @@ const Booking = ({ booking }) => {
         if (booking.Spot) setLoad(true)
     }, [booking.Spot])
 
-    const handleDelete = async (e) => {
+    const handleDelete = (e) => {
         e.preventDefault()
         dispatch(deleteBookingThunk(booking))
         dispatch(allBookingsIdThunk(booking.id))

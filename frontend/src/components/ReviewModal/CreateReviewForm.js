@@ -15,15 +15,18 @@ function CreateAReview({ setShowModal }) {
     const [stars, setStars] = useState('')
     const dispatch = useDispatch()
     const [errors, setErrors] = useState([])
+    const [show, setShow] = useState(false)
 
     useEffect(() => {
         const validationErrors = []
-        if (stars < 0 || stars > 6) validationErrors.push('Stars must be between 1 and 5.')
+        if (!stars) validationErrors.push('Stars must be between 1 and 5.')
         setErrors(validationErrors)
     }, [stars, newReview])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        if (errors) setShow(true)
+
         const userReview = {
             stars,
             review: newReview,
@@ -34,8 +37,8 @@ function CreateAReview({ setShowModal }) {
         await dispatch(getReviewsThunk(spotId))
         await dispatch(getSpotByIdThunk(spotId))
         setShowModal(false)
-
         if (reviewCreated) history.push(`/spots/${spotId}`)
+
     }
 
     return (
@@ -46,9 +49,6 @@ function CreateAReview({ setShowModal }) {
                 </div>
             </div>
             <form onSubmit={handleSubmit}>
-                <ul>
-                    {errors.length > 0 && errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                </ul>
                 <div>
                     <textarea id="reviewinput" placeholder="Tell everyone about your experience."
                         type="text"
@@ -59,6 +59,9 @@ function CreateAReview({ setShowModal }) {
                 <div>
                     <button id="reviewbutton" type="submit">Submit review</button>
                 </div>
+                <ul>
+                    {show && errors.length > 0 && errors.map((error, idx) => <li style={{ color: 'red', fontSize: '12px' }} key={idx}>{error}</li>)}
+                </ul>
             </form>
         </div>
     )

@@ -33,13 +33,10 @@ export const cleanUp = () => {
 }
 
 export const deleteReviewThunk = (id) => async (dispatch) => {
-
     const response = await csrfFetch(`/api/reviews/${id}`, {
         method: 'DELETE'
     })
     if (response.ok) {
-        const data = await response.json()
-
         dispatch(deleteReviewAction(id))
     }
 
@@ -62,9 +59,13 @@ export const createReviewThunk = (newReviews) => async (dispatch) => {
             review, stars
         })
     })
-
-    const newReview = await response.json()
-    dispatch(createReviewAction(newReview))
+    if (response.ok) {
+        const newReview = await response.json()
+        dispatch(createReviewAction(newReview))
+    } else if (response.status < 500) {
+        const data = await response.json()
+        if (data.errors) return data
+    }
 }
 
 

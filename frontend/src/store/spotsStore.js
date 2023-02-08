@@ -60,6 +60,9 @@ export const editSpotThunk = (editSpot) => async (dispatch) => {
         const newEditSpot = await response.json()
         dispatch(editSpotAction(newEditSpot))
         return newEditSpot
+    } else if (response.status < 500) {
+        const data = await response.json()
+        if (data.errors) return data
     }
 }
 
@@ -108,9 +111,7 @@ export const createASpotThunk = (newSpot) => async dispatch => {
         body: JSON.stringify(newSpot)
     })
     if (response.ok) {
-
         const oneSpot = await response.json()
-
         const res = await csrfFetch(`/api/spots/${oneSpot.id}/images`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -121,6 +122,9 @@ export const createASpotThunk = (newSpot) => async dispatch => {
             oneSpot.SpotImages = [image]
             dispatch(createASpotAction(oneSpot))
             return oneSpot
+        } else if (response.status < 500) {
+            const data = await response.json()
+            if (data.errors) return data
         }
     }
 
