@@ -57,7 +57,6 @@ router.post(
 );
 
 // backend/routes/api/session.js
-// ...
 
 // Log out
 router.delete(
@@ -68,9 +67,8 @@ router.delete(
     }
 );
 
-// ...
+
 // backend/routes/api/session.js
-// ...
 
 // Restore session user
 router.get(
@@ -85,7 +83,7 @@ router.get(
     }
 );
 
-// ...
+
 
 
 
