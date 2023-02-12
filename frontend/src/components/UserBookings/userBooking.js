@@ -40,7 +40,7 @@ const Booking = ({ booking }) => {
     function Drop() {
         return (
             <div className="booking-delete">
-                <button className="deleteBtn" onClick={handleDelete}>Delete</button>
+                <button className="deleteBtn" onClick={handleDelete}>Cancel</button>
             </div >
         )
     }

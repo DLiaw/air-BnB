@@ -1,9 +1,11 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams, useHistory, NavLink } from 'react-router-dom'
 import { DateRangePicker } from 'react-dates';
 import { newBookingThunk, allBookingsUserThunk } from '../../store/bookings';
+import { Modal } from '../../context/Modal'
+import LoginForm from '../LoginFormModal/LoginForm';
 import moment from "moment";
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
@@ -20,6 +22,7 @@ const Calendar = ({ bookings, spot }) => {
     const [focusedInput, setFocusedInput] = useState(null)
     const [bookedDates, setBookedDates] = useState([])
     const [blockedDates, setBlockedDates] = useState([])
+    const [showModal, setShowModal] = useState(false)
 
     useEffect(() => {
         existingBookings(bookings)
@@ -172,8 +175,15 @@ const Calendar = ({ bookings, spot }) => {
                 <button onClick={handleButtonClick} className='cal-reserve' style={{ color: 'white', marginBottom: ' 10px' }}>Check availability</button>
             </div>}
 
-            {startDate && endDate && <div className='cal-reserve-div'>
+            {user && startDate && endDate && <div className='cal-reserve-div'>
                 <button onClick={handleSubmitBookings} className='cal-reserve' style={{ color: 'white' }}>Reserve</button>
+            </div>}
+            {!user && startDate && endDate && <div className='cal-reserve-div'>
+                <button onClick={() => setShowModal(true)} className='cal-reserve' style={{ color: 'white' }}>Reserve</button>
+                {showModal && <Modal onClose={() => setShowModal(false)}>
+                    <LoginForm setShowModal={setShowModal} />
+                </Modal>
+                }
             </div>}
 
             {startDate && endDate && <div className='cal-charge'>
